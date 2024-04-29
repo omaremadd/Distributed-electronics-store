@@ -58,3 +58,28 @@ document.addEventListener('DOMContentLoaded', function() {
 
     document.body.insertBefore(header, document.body.firstChild);
 });
+
+document.addEventListener('DOMContentLoaded', function() {
+    var offcanvas = document.createElement('div');
+    offcanvas.className = 'offcanvas offcanvas-end';
+    offcanvas.setAttribute('data-bs-scroll', 'true');
+    offcanvas.setAttribute('tabindex', '-1');
+    offcanvas.setAttribute('id', 'Id1');
+    offcanvas.setAttribute('aria-labelledby', 'Enable both scrolling & backdrop');
+    offcanvas.innerHTML = `
+        <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="Enable both scrolling & backdrop">
+                Backdrop with scrolling
+            </h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+            <p>
+                Try scrolling the rest of the page to see this option in action.
+            </p>
+        </div>
+    `;
+
+    var mainTag = document.querySelector('main');
+    mainTag.insertBefore(offcanvas, mainTag.firstChild);
+});
