@@ -1,0 +1,7 @@
+.cat-card {
+    transition: margin 0.2s ease-in-out;
+}
+
+.cat-card:hover {
+    margin-top: -5px;
+}
