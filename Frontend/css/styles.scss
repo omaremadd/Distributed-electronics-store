@@ -1,7 +1,9 @@
 .float-on-hover {
     transition: margin 0.2s ease-in-out;
+    margin-bottom: 25px;
 }
 
 .float-on-hover:hover {
     margin-top: -5px;
+    margin-bottom: 30px;
 }
