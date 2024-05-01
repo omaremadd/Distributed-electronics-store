@@ -39,7 +39,7 @@ document.addEventListener('DOMContentLoaded', function() {
                             </form>
                         </li>
                         <li class="nav-item mx-lg-2">
-                            <a class="nav-link active" href="#">Profile</a>
+                            <a class="nav-link active" href="profile.html">Profile</a>
                         </li>
                         <li class="nav-item mx-lg-2">
                             <button class="btn btn-outline-none text-light float-on-hover" type="button" data-bs-toggle="offcanvas" data-bs-target="#Id1" aria-controls="Id1">
@@ -69,14 +69,53 @@ document.addEventListener('DOMContentLoaded', function() {
     offcanvas.innerHTML = `
         <div class="offcanvas-header">
             <h5 class="offcanvas-title" id="Enable both scrolling & backdrop">
-                Backdrop with scrolling
+                Items in your Cart
             </h5>
             <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
         </div>
         <div class="offcanvas-body">
-            <p>
-                Try scrolling the rest of the page to see this option in action.
-            </p>
+            <!-- Product tag -->
+            <div class="container-fluid border-top p-2 placeholder-glow d-flex" style="height: 100px; align-content: center">
+                <img src="https://placehold.co/80x80" alt="Product photo" style="width: 80px; height: 80px;">
+                <div class="container-fluid col">
+                    <div class="row">
+                        <strong class="" style="font-size: large;">Product name</strong>
+                    </div>
+                    <div class="row">
+                        <span class="">Product description</span>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <div class="input-group input-group-sm">
+                                <button class="input-group-text" id="minus-addon-0">-</button>
+                                <span class="border" aria-describedby="minus-addon-0 plus-addon-0" style="width: 30px;text-align: center;">1</span>
+                                <button class="input-group-text" id="plus-addon-0">+</button>
+                            </div>
+                        </div>
+                        <div class="col text-end">
+                            <span class="text-secondary"><span class="">123.45</span> EGP</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- More products can be inserted here -->
+
+            <!-- Checkout -->
+            <div class="container-fluid border-top p-2 placeholder-glow d-flex" style="height: 100px; align-content: center; position:absolute; bottom: 15px; right:0px">
+                <div class="container-fluid col">
+                    <div class="row">
+                        <strong class="" style="font-size: large;">Total</strong>
+                    </div>
+                    <div class="row">
+                        <div class="col text-end">
+                            <span class="text-secondary"><span class="">123.45</span> EGP</span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <a href="../html/checkout.html" class="btn btn-primary">Checkout</a>
+                    </div>
+                </div>
+            </div>
         </div>
     `;
 
