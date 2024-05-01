@@ -17,12 +17,12 @@ document.addEventListener('DOMContentLoaded', function() {
                                 All Products
                             </a>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="#">Laptops</a></li>
-                                <li><a class="dropdown-item" href="#">IPhones</a></li>
-                                <li><a class="dropdown-item" href="#">Accessories</a></li>
-                                <li><a class="dropdown-item" href="#">Laptops</a></li>
-                                <li><a class="dropdown-item" href="#">IPhones</a></li>
-                                <li><a class="dropdown-item" href="#">Accessories</a></li>
+                                <li><a class="dropdown-item" href="#">Placeholder1</a></li>
+                                <li><a class="dropdown-item" href="#">Placeholder2</a></li>
+                                <li><a class="dropdown-item" href="#">Placeholder3</a></li>
+                                <li><a class="dropdown-item" href="#">Placeholder4</a></li>
+                                <li><a class="dropdown-item" href="#">Placeholder5</a></li>
+                                <li><a class="dropdown-item" href="#">Placeholder6</a></li>
                             </ul>
                         </li>
                     </ul>
