@@ -39,7 +39,7 @@ document.addEventListener('DOMContentLoaded', function() {
                             </form>
                         </li>
                         <li class="nav-item mx-lg-2">
-                            <a class="nav-link active" href="#">Profile</a>
+                            <a class="nav-link active" href="profile.html">Profile</a>
                         </li>
                         <li class="nav-item mx-lg-2">
                             <button class="btn btn-outline-none text-light float-on-hover" type="button" data-bs-toggle="offcanvas" data-bs-target="#Id1" aria-controls="Id1">
