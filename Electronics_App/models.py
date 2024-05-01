@@ -5,7 +5,7 @@ from django.core.validators import RegexValidator
 from django.db import models
 from django.contrib.auth.models import User
 
-from Electronics_App import admin
+#from Electronics_App import admin           ########makes a circular import error
 
 
 # Create your models here.
@@ -42,6 +42,7 @@ class Product(models.Model):
     name = models.CharField(max_length=200)
     price = models.FloatField(default=100)
     Type = models.CharField(max_length=50 )
+    #new_id = models.AutoField(primary_key=True) el mfrod yb2a kda 3shan y3ml increment l integers mn 1
     Product_id = models.UUIDField(default=uuid.uuid4, editable=False, primary_key=True, unique=True)
     quantity = models.IntegerField(default=1)
     # fadel image
