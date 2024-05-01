@@ -101,7 +101,7 @@ document.addEventListener('DOMContentLoaded', function() {
             <!-- More products can be inserted here -->
 
             <!-- Checkout -->
-            <div class="container-fluid border-top p-2 placeholder-glow d-flex" style="height: 100px; align-content: center; position:absolute; bottom: 15px; right:0px">
+            <div class="container-fluid border-top p-2 placeholder-glow d-flex" style="height: 100px; align-content: center;">
                 <div class="container-fluid col">
                     <div class="row">
                         <strong class="" style="font-size: large;">Total</strong>
