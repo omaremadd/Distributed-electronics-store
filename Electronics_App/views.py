@@ -1,4 +1,6 @@
 from django.shortcuts import render
+from django.contrib.auth.forms import UserCreationForm
+from django import forms
 from rest_framework import generics
 from .models import Product, Payment, Order
 from .serializers import ProductSerializer, PaymentSerializer, OrderSerializer

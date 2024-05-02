@@ -2,6 +2,7 @@ from django.urls import path
 from rest_framework.routers import DefaultRouter
 from Electronics_App import views
 from django.contrib.auth import views as auth_views
+#from Frontend.html import index
 
 
 urlpatterns = [
@@ -12,5 +13,5 @@ urlpatterns = [
     path('orders/', views.OrderList.as_view(), name='order_list'),
     path('orders/<pk>/', views.OrderDetail.as_view(), name='order_detail'),
     path('logout/', auth_views.LogoutView.as_view(), name='logout'),
-    path('login/', auth_views.LoginView.as_view(template_name='login.html'), name='login'),
+    path('login/', auth_views.LoginView.as_view(template_name='index.html'), name='login'),
 ]

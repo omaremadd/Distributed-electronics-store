@@ -1,63 +1,70 @@
+{% load static %}
 <!doctype html>
 <html lang="en">
+
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Electronics store</title>
-  <link href="../css/bootstrap.min.css" rel="stylesheet">
-  <link href="../css/styles.css" rel="stylesheet">
-  <script src="../js/navbar.js"></script>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  <!-- <link href="../css/bootstrap.min.css" rel="stylesheet"> -->
+  <!-- <link href="..css/styles./css" rel="stylesheet"> -->
+  <!-- <script src="../js/navbar.js"></script> -->
+  <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
+  <script src="{% static 'js/navbar.js' %}"></script>
 </head>
+
 <body>
-
-  
-
-  <main> 
-
+  <main>
     <!-- Welcome and log in -->
     <div class="card" style="width:100%; align-self:center; position: relative;">
-      <img src="../img/electronicstore.png" class="card-img-top" alt="welcome picture" style="width: 100%; height: 100vh; object-fit: cover;" >
-      <div style="position: absolute; top: 0; left: 0; color: white; padding: 10px; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; background: rgba(0, 0, 0, 0.5);">
-          <div class="row">
-            <div class="col-12" style="font-size:xxx-large;">
-              <div class="card text-start">
-                <div class="card-body">
-                  <h1 class="card-title"> Welcome to our electronics store!</h4> 
+      <img src="{% static 'img/electronicstore.png' %}" class="card-img-top" alt="welcome picture">
+      {% comment %} <img src="../img/electronicstore.png" class="card-img-top" alt="welcome picture"
+        style="width: 100%; height: 100vh; object-fit: cover;"> {% endcomment %}
+      <div
+        style="position: absolute; top: 0; left: 0; color: white; padding: 10px; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; background: rgba(0, 0, 0, 0.5);">
+        <div class="row">
+          <div class="col-12" style="font-size:xxx-large;">
+            <div class="card text-start">
+              <div class="card-body">
+                <h1 class="card-title"> Welcome to our electronics store!</h4>
                   <hr>
                   <h3>Log in to browse freely</h3>
                   <div class="mb-3">
-                    <label for="" class="form-label"><h5>Email</h5></label>
-                    <input
-                      type="email"
-                      class="form-control"
-                      aria-describedby="emailHelpId"
-                      placeholder="abc@mail.com"/>
+                    <label for="" class="form-label">
+                      <h5>Email</h5>
+                    </label>
+                    <input type="email" class="form-control" aria-describedby="emailHelpId"
+                      placeholder="abc@mail.com" />
                   </div>
                   <div class="mb-3">
-                    <label for="" class="form-label"><h5>Password</h5></label>
-                    <input
-                      type="password"
-                      class="form-control"
-                      placeholder="Enter your password"/>
+                    <label for="" class="form-label">
+                      <h5>Password</h5>
+                    </label>
+                    <input type="password" class="form-control" placeholder="Enter your password" />
                   </div>
-                  <button type="button" class="btn btn-primary">Log in</button><hr>
+                  <button type="button" class="btn btn-primary">Log in</button>
+                  <hr>
                   <div>
                     <h6>Don't have an account? <a href="../html/signup.html">Sign Up</a></h6>
                   </div>
-
-                </div>
               </div>
             </div>
           </div>
-       </div>
+        </div>
+      </div>
     </div>
     <!-- Welcome and log in -->
   </main>
 
   <footer>
-    
+
   </footer>
 
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+    crossorigin="anonymous"></script>
 </body>
+
 </html>

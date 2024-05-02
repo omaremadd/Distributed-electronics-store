@@ -1,0 +1,17 @@
+.float-on-hover {
+    transition: margin 0.2s ease-in-out;
+}
+
+.float-on-hover:hover {
+    margin-top: -5px;
+}
+
+.float-on-hover-card {
+    @extend .float-on-hover;
+    margin-bottom: 25px;
+}
+
+.float-on-hover-card:hover {
+    margin-top: -5px;
+    margin-bottom: 30px;
+}
