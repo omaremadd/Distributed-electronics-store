@@ -123,22 +123,22 @@ document.addEventListener('DOMContentLoaded', function() {
     mainTag.insertBefore(offcanvas, mainTag.firstChild);
 });
 
-document.addEventListener('DOMContentLoaded', function() {
-    var footer = document.querySelector('footer');
-    var nav = document.createElement('nav');
-    nav.className = 'nav justify-content-center bg-tertiary text-white p-3 fixed-bottom';
-    nav.innerHTML = `
-        <ul class="nav justify-content-center bg-tertiary text-white p-3 fixed-bottom">
-            <li class="nav-item">
-                <a class="nav-link active" href="#" aria-current="page">Active link</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Link</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link disabled" href="#">Disabled link</a>
-            </li>
-        </ul>
-    `;
-    footer.appendChild(nav);
-});
+// document.addEventListener('DOMContentLoaded', function() {
+//     var footer = document.querySelector('footer');
+//     var nav = document.createElement('nav');
+//     nav.className = 'nav justify-content-center bg-tertiary text-white p-3 fixed-bottom';
+//     nav.innerHTML = `
+//         <ul class="nav justify-content-center bg-tertiary text-white p-3 fixed-bottom">
+//             <li class="nav-item">
+//                 <a class="nav-link active" href="#" aria-current="page">Active link</a>
+//             </li>
+//             <li class="nav-item">
+//                 <a class="nav-link" href="#">Link</a>
+//             </li>
+//             <li class="nav-item">
+//                 <a class="nav-link disabled" href="#">Disabled link</a>
+//             </li>
+//         </ul>
+//     `;
+//     footer.appendChild(nav);
+// });
