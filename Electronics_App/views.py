@@ -18,6 +18,8 @@ def signup(request):
             #Customer.objects.create(user=user)
             login(request, user)
             return redirect('home')
+        else:
+            print(form.errors)
     else:
         form = SignUpForm()
     return render(request, 'signup.html', {'form': form})
