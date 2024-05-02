@@ -8,7 +8,7 @@ from .forms import SignUpForm
 # Create your views here.
 
 def home_view (request):
-    return render(request, 'index.html')
+    return render(request, 'home.html')
 
 def signup(request):
     if request.method == 'POST':
