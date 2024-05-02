@@ -1,11 +1,26 @@
 from django.shortcuts import render, redirect
-from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import login
-from django import forms
+from django.contrib.auth.forms import UserCreationForm
 from rest_framework import generics
-from .models import Product, Payment, Order
+from .models import Product, Payment, Order, Customer
 from .serializers import ProductSerializer, PaymentSerializer, OrderSerializer
+from .forms import SignUpForm
 # Create your views here.
+
+def home_view (request):
+    return render(request, 'index.html')
+
+def signup(request):
+    if request.method == 'POST':
+        form = SignUpForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            #Customer.objects.create(user=user)
+            login(request, user)
+            return redirect('home')
+    else:
+        form = SignUpForm()
+    return render(request, 'signup.html', {'form': form})
 
 class ProductList(generics.ListCreateAPIView):
     queryset = Product.objects.all()
@@ -33,14 +48,3 @@ class OrderDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Order.objects.all()
     serializer_class = OrderSerializer
     lookup_field = 'pk'    
-
-def signup(request):
-    if request.method == 'POST':
-        form = UserCreationForm(request.POST)
-        if form.is_valid():
-            user = form.save()
-            login(request, user)
-            return redirect('home')
-    else:
-        form = UserCreationForm()
-    return render(request, 'signup.html', {'form': form})

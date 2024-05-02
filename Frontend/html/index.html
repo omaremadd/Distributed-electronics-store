@@ -9,9 +9,6 @@
   <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet" type="text/css">
   <link href="{% static 'css/styles.css' %}" rel="stylesheet" type="text/css">
   <script src="{% static 'js/navbar.js' %}"></script>
-  {% comment %} <link href="../css/bootstrap.min.css" rel="stylesheet">
-  <link href="..css/styles./css" rel="stylesheet">
-  <script src="../js/navbar.js"></script> {% endcomment %}
 </head>
 
 <body>
@@ -20,35 +17,35 @@
     <div class="card" style="width:100%; align-self:center; position: relative;">
       <img src="{% static 'img/electronicstore.png' %}" class="card-img-top" 
       alt="welcome picture" style="width: 100%; height: 100vh; object-fit: cover;">
-      {% comment %} <img src="../img/electronicstore.png" class="card-img-top" alt="welcome picture"
-        style="width: 100%; height: 100vh; object-fit: cover;"> {% endcomment %}
       <div
         style="position: absolute; top: 0; left: 0; color: white; padding: 10px; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; background: rgba(0, 0, 0, 0.5);">
         <div class="row">
           <div class="col-12" style="font-size:xxx-large;">
             <div class="card text-start">
               <div class="card-body">
-                <h1 class="card-title"> Welcome to our electronics store!</h4>
-                  <hr>
-                  <h3>Log in to browse freely</h3>
-                  <div class="mb-3">
-                    <label for="" class="form-label">
-                      <h5>Email</h5>
-                    </label>
-                    <input type="email" class="form-control" aria-describedby="emailHelpId"
-                      placeholder="abc@mail.com" />
-                  </div>
-                  <div class="mb-3">
-                    <label for="" class="form-label">
-                      <h5>Password</h5>
-                    </label>
-                    <input type="password" class="form-control" placeholder="Enter your password" />
-                  </div>
-                  <button type="button" class="btn btn-primary">Log in</button>
-                  <hr>
-                  <div>
-                    <h6>Don't have an account? <a href="{%url 'signup' %}">Sign Up</a></h6>
-                  </div>
+                <form method="POST">
+                  {% csrf_token %}
+                  <h1 class="card-title"> Welcome to our electronics store!</h4>
+                    <hr>
+                    <h3>Log in to browse freely</h3>
+                    <div class="mb-3">
+                      <label for="" class="form-label">
+                        <h5>Email</h5>
+                      </label>
+                      <input type="email" class="form-control" aria-describedby="emailHelpId"
+                        placeholder="abc@mail.com" />
+                    </div>
+                    <div class="mb-3">
+                      <label for="" class="form-label">
+                        <h5>Password</h5>
+                      </label>
+                      <input type="password" class="form-control" placeholder="Enter your password" />
+                    </div>
+                    <button type="submit" class="btn btn-primary">Log in</button>
+                    <hr>
+                    <div>
+                      <h6>Don't have an account? <a href="{%url 'signup' %}">Sign Up</a></h6>
+                    </div>
               </div>
             </div>
           </div>
