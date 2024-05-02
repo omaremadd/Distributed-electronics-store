@@ -46,6 +46,7 @@ class Product(models.Model):
     Product_id = models.UUIDField(default=uuid.uuid4, editable=False, primary_key=True, unique=True)
     quantity = models.IntegerField(default=1)
     # fadel image
+    #Description 
 
 class update(models.Model):
     product = models.ForeignKey(Product, on_delete=models.CASCADE);
