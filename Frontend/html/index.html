@@ -33,9 +33,9 @@
                     <h3>Log in to browse freely</h3>
                     <div class="mb-3">
                       <label for="" class="form-label">
-                        <h5>Email</h5>
+                        <h5>Username</h5>
                       </label>
-                      {% render_field form.username type="email" class+="form-control" placeholder="abc@mail.com" %}
+                      {% render_field form.username type="text" name="username" class+="form-control" placeholder="Username" %}
                       {% comment %} <input type="email" class="form-control" aria-describedby="emailHelpId"
                         placeholder="abc@mail.com" /> {% endcomment %}
                     </div>
