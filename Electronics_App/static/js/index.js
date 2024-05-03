@@ -12,16 +12,22 @@ getcategories();
 function displayCategories(){
     var categoryCard =``;
     for(var i=0;i<categories.length;i++){
-        categoryCard+=`<div id="${categories[i].Product_id}" class="col-6 col-sm-3 float-on-hover">
-        <a href="#" class="card-link link-underline link-underline-opacity-0">
-            <div class="card text-start">
-                <img class="card-img-top" src="#" alt="${categories[i].name}" />
-                <div class="card-body">
-                    <h4 id="title" class="card-title ">${categories[i].name}</h4>
-                </div>
+        categoryCard+=`<div class="col-6 col-sm-3 mx-3 mb-6 float-on-hover-card">
+        <a href="product.html" class="card-link link-underline link-underline-opacity-0">
+          <div class="card text-start">
+            <img class="card-img-top" src="https://placehold.co/600x400" alt="${categories[i].name}" />
+            <div class="card-body">
+              <h4 class="card-title">${categories[i].name}</h4>
+              <p class="card-text">
+                <!-- <span class="placeholder col-7"></span> -->
+                <span class="">${categories[i].quantity} left in stock</span><br>
+                <span class="">${categories[i].price} EGP</span>
+              </p>
+              <button class="btn btn-primary col-5" style="width:110px;">Add to Cart</button>
             </div>
+          </div>
         </a>
-    </div>`
+        </div>`
     }
     categoryHolder.innerHTML=categoryCard;
 }
@@ -46,7 +52,7 @@ function attachEvListener(){
 
 function navigateToCategory(){
     
-    window.location.href="";
+    window.location.href="category.html";
    
    
 }
