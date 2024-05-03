@@ -32,6 +32,10 @@ class UserProfile(generics.RetrieveAPIView):
 def profile_view(request):
     return render(request, 'profile.html')
 
+def product_view(request, pk):
+    product = Product.objects.get(pk=pk)
+    return render(request, 'product.html', {'product': product})
+
 class ProductList(generics.ListCreateAPIView):
     queryset = Product.objects.all()
     serializer_class = ProductSerializer

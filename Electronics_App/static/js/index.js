@@ -9,11 +9,26 @@ async function getcategories(){
     attachEvListener();
 }
 getcategories();
+
+function cart_disabled(stock) {
+    if (stock == 0) {
+        return "disabled";
+    }
+    return "";
+}
+
+function cart_text(stock) {
+    if (stock == 0) {
+        return "Out of Stock";
+    }
+    return "Add to Cart";
+}
+
 function displayCategories(){
     var categoryCard =``;
     for(var i=0;i<categories.length;i++){
         categoryCard+=`<div class="col-6 col-sm-3 mx-3 mb-6 float-on-hover-card">
-        <a href="product.html" class="card-link link-underline link-underline-opacity-0">
+        <a href="product/${categories[i].Product_id}" class="card-link link-underline link-underline-opacity-0">
           <div class="card text-start">
             <img class="card-img-top" src="https://placehold.co/600x400" alt="${categories[i].name}" />
             <div class="card-body">
@@ -23,7 +38,7 @@ function displayCategories(){
                 <span class="">${categories[i].quantity} left in stock</span><br>
                 <span class="">${categories[i].price} EGP</span>
               </p>
-              <button class="btn btn-primary col-5" style="width:110px;">Add to Cart</button>
+              <button class="btn btn-primary col-5 ${cart_disabled(categories[i].quantity)}" style="width:120px;">${cart_text(categories[i].quantity)}</button>
             </div>
           </div>
         </a>
