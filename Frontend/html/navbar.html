@@ -62,6 +62,10 @@
                         <button class="btn btn-outline-light" type="submit">Logout</button>
                     </form>
                 </li>
+                {% else %}
+                <li class="nav-item mx-lg-2">
+                    <a class="btn btn-outline-light" href="{% url 'login' %}">Login</a>
+                </li>
                 {% endif %}
             </div>
         </div>
