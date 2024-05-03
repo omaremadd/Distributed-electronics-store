@@ -6,7 +6,7 @@
     <title>Product</title>
     <link href="../css/bootstrap.min.css" rel="stylesheet">
     <link href="../css/styles.css" rel="stylesheet">
-    <script src="../js/navbar.js"></script>
+    {% comment %} <script src="../js/navbar.js"></script> {% endcomment %}
 
     <style>
         .card {
@@ -15,6 +15,8 @@
     </style>
 </head>
 <body>
+    {% include 'navbar.html' %}
+    {% include 'cart.html' %}
     <main style="margin-top: 10vh;">
         <div class="row justify-content-center">
             <div class="col-md-auto">

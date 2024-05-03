@@ -6,11 +6,12 @@
     <title>Home</title>
     <link href="../css/bootstrap.min.css" rel="stylesheet">
     <link href="../css/styles.css" rel="stylesheet">
-    <script src="../js/navbar.js"></script>
+    {% comment %} <script src="../js/navbar.js"></script> {% endcomment %}
 </head>
 <body>
   
-    
+  {% include 'navbar.html' %}
+  {% include 'cart.html' %}
     <main style="margin-top:10vh;"> 
     <div class="container">
       <h1 class="placeholder-glow">
