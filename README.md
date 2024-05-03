@@ -4,7 +4,7 @@
 1. Install Python
 2. Install PostgreSQL
 3. Open up a Command Prompt (not PowerShell!)
-4. Run the following commands:
+4. Run the following commands from the repo directory:
 ```cmd
 1-make-env.bat
 ```
