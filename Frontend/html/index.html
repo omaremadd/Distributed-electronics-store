@@ -1,3 +1,4 @@
+{% load widget_tweaks %}
 {% load static %}
 <!doctype html>
 <html lang="en">
@@ -34,14 +35,16 @@
                       <label for="" class="form-label">
                         <h5>Email</h5>
                       </label>
-                      <input type="email" class="form-control" aria-describedby="emailHelpId"
-                        placeholder="abc@mail.com" />
+                      {% render_field form.username type="email" class+="form-control" placeholder="abc@mail.com" %}
+                      {% comment %} <input type="email" class="form-control" aria-describedby="emailHelpId"
+                        placeholder="abc@mail.com" /> {% endcomment %}
                     </div>
                     <div class="mb-3">
                       <label for="" class="form-label">
                         <h5>Password</h5>
                       </label>
-                      <input type="password" class="form-control" placeholder="Enter your password" />
+                      {% render_field form.password type="password" class+="form-control" placeholder="Password" %}
+                      {% comment %} <input type="password" class="form-control" placeholder="Enter your password" /> {% endcomment %}
                     </div>
                     <button type="submit" class="btn btn-primary">Log in</button>
                     <hr>
