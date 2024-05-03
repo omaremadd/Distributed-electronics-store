@@ -37,3 +37,9 @@ function displayProduct(){
     }
     productPrice.innerHTML = product.price + ' EGP';
 }
+
+function addToCartButton(){
+    addButton.addEventListener('click',function(){
+        sessionStorage.setItem(product.product_id,product);
+    })
+}

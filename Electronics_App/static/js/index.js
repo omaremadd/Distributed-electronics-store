@@ -5,7 +5,8 @@ async function getproducts(){
     var finalResponse = await response.json();
     // console.log(finalResponse[0].image);
     products = finalResponse;
-    displayproducts();
+    displayproducts(products);
+    searchProducts();
     // attachEvListener();
 }
 getproducts();
@@ -24,21 +25,21 @@ function cart_text(stock) {
     return "Add to Cart";
 }
 
-function displayproducts(){
+function displayproducts(displayedProducts){
     var productCard =``;
-    for(var i=0;i<products.length;i++){
+    for(var i=0;i<displayedProducts.length;i++){
         productCard+=`<div class="col-6 col-sm-3 mx-3 mb-6 float-on-hover-card">
-        <a href="product/${products[i].Product_id}" class="card-link link-underline link-underline-opacity-0">
+        <a href="product/${displayedProducts[i].Product_id}" class="card-link link-underline link-underline-opacity-0">
           <div class="card text-start">
-            <img class="card-img-top" src="https://placehold.co/600x400" alt="${products[i].name}" />
+            <img class="card-img-top" src="https://placehold.co/600x400" alt="${displayedProducts[i].name}" />
             <div class="card-body">
-              <h4 class="card-title">${products[i].name}</h4>
+              <h4 class="card-title">${displayedProducts[i].name}</h4>
               <p class="card-text">
                 <!-- <span class="placeholder col-7"></span> -->
-                <span class="">${products[i].quantity} left in stock</span><br>
-                <span class="">${products[i].price} EGP</span>
+                <span class="">${displayedProducts[i].quantity} left in stock</span><br>
+                <span class="">${displayedProducts[i].price} EGP</span>
               </p>
-              <button class="btn btn-primary col-5 ${cart_disabled(products[i].quantity)}" style="width:120px;">${cart_text(products[i].quantity)}</button>
+              <button class="btn btn-primary col-5 ${cart_disabled(displayedProducts[i].quantity)}" style="width:120px;">${cart_text(displayedProducts[i].quantity)}</button>
             </div>
           </div>
         </a>
@@ -49,25 +50,32 @@ function displayproducts(){
 
 
 
-// function attachEvListener(){
-//     for (var i=0;i<products.length;i++){
-//         (function(category) {
-//             var card = document.getElementById(category.Product_id);
-//             card.addEventListener('click', function(ev) {
-//                 console.log(category.name);
-//                 sessionStorage.setItem('title',category.name);
-//                 navigateToCategory();
-
-//             });
-//         })(products[i]);
-//     }
-//     // console.log(categoryCards);
-    
-// }
-
-// function navigateToCategory(){
-    
-//     window.location.href="category.html";
-   
-   
-// }
+var searchBtn = document.getElementById('search-addon');
+var searchInput = document.getElementById('search-input');
+var searchedProducts = [];
+function searchProducts(){
+    searchBtn.addEventListener('click',function(){
+        search();
+    })
+    searchInput.addEventListener('keydown',function(ev){
+        if(ev.key=='Enter'){
+            ev.preventDefault();
+            search();
+        }
+    })
+}
+function search(){
+    console.log(searchData);
+    var searchData = searchInput.value;
+        products.forEach(item=>{
+            productMatch(item,searchData);
+        });
+        displayproducts(searchedProducts);
+        searchedProducts=[];
+}
+function productMatch(item,value){
+    var name = item.name;
+    if(name.includes(value)){
+        searchedProducts.push(item);
+    }
+}
