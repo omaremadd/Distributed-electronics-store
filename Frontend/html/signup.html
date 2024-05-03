@@ -26,10 +26,15 @@
                                 {% csrf_token %}
                                 <h1 class="card-title">Create a new account</h1> 
                                 <hr>
-                                
+                                <div class="row">
+                                  <div class="my-0">
+                                    <label for="" class="form-label"><h5>Username:</h5></label>
+                                    {% render_field form.username placeholder="username" class="form-control" id="username" %}
+                                </div>
+                                </div>
                                 <div class="row">
                                     <div class="col">
-                                        <div class="mb-3">
+                                        <div class="my-3">
                                             <label for="" class="form-label"><h5>First name:</h5></label>
                                             {% render_field form.first_name placeholder="First Name" class="form-control" id="first_name" %}
                                             {% comment %} <input
@@ -41,7 +46,7 @@
                                         </div>
                                     </div>
                                     <div class="col">
-                                        <div class="mb-3">
+                                        <div class="my-3">
                                             <label for="" class="form-label"><h5>Last name:</h5></label>
                                             {% render_field form.last_name placeholder="Last Name" class="form-control" id="last_name" %}
                                             {% comment %} <input
@@ -53,18 +58,18 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="mb-3">
+                                <div class="row my-3">
                                     <label for="" class="form-label"><h5>Phone number: </h5></label>
                                     <div class="input-group col-4">
                                       <span class="input-group-text" id="basic-addon1">+20</span>
                                       {% render_field form.phone type="tel" class+="form-control" id="phone" placeholder="Phone Number" %}
                                     </div>
                                   </div>
-                                <div class="mb-3">
+                                <div class="row my-3">
                                   <label for="" class="form-label"><h5>Email</h5></label>
                                   {% render_field form.email type="email" id="email" placeholder="email@example.com" class+="form-control" %}
                                 </div>
-                                <div class="mb-3">
+                                <div class="row my-3">
                                     <label for="" class="form-label"><h5>Password</h5></label>
                                     {% render_field form.password1 type="password" id="password1" placeholder="Enter your password" class+="form-control my-2" %}
                                     {% if form.password1.errors %}
