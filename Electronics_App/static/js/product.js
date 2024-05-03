@@ -5,6 +5,7 @@ var product_name_tag = document.getElementById('product_name');
 var productQuantity = document.getElementById('product_quantity');
 var productPrice = document.getElementById('product_price');
 var addButton = document.getElementById('add_btn');
+var cartButton = document.getElementById('cart_btn');
 var product = null;
 async function getProduct(){
     var response = await fetch(`http://127.0.0.1:8000/API/products/${product_id}/?format=json`);
@@ -16,6 +17,11 @@ async function getProduct(){
 getProduct();
 
 function displayProduct(){
+    product_name_tag.classList.remove('placeholder');
+    productQuantity.classList.remove('placeholder');
+    productPrice.classList.remove('placeholder');
+    addButton.classList.remove('placeholder');
+    cartButton.classList.remove('placeholder');
     product_name_tag.innerHTML=product.name;
     var stock = product.quantity;
     if(stock != 0){
@@ -25,7 +31,7 @@ function displayProduct(){
     {
         productQuantity.innerHTML= `Out of Stock`;
         productQuantity.classList.add('text-danger');
-        addButton.innerHTML='Out of Stock';
+        cartButton.innerHTML='Out of Stock';
         addButton.classList.replace('btn-primary','btn-secondary');
         addButton.classList.add('disabled');
     }
