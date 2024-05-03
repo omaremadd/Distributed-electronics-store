@@ -46,6 +46,17 @@
                       {% render_field form.password type="password" class+="form-control" placeholder="Password" %}
                       {% comment %} <input type="password" class="form-control" placeholder="Enter your password" /> {% endcomment %}
                     </div>
+                    {% if form.errors %}
+                    <div class="alert alert-danger form-alert">
+                        <ul>
+                            {% for field, errors in form.errors.items %}
+                                {% for error in errors %}
+                                    <li>{{ error }}</li>
+                                {% endfor %}
+                            {% endfor %}
+                        </ul>
+                    </div>
+                    {% endif %}
                     <button type="submit" class="btn btn-primary">Log in</button>
                     <hr>
                     <div>
