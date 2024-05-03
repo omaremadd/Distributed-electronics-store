@@ -1,5 +1,7 @@
 from rest_framework import serializers
 from .models import Product, Payment, Order, contain
+from django.contrib.auth.models import User
+
 
 class ProductSerializer(serializers.ModelSerializer):
     class Meta:
@@ -22,3 +24,8 @@ class OrderSerializer(serializers.ModelSerializer):
         contains = contain.objects.filter(Order=obj)
         products = [c.Product for c in contains]
         return ProductSerializer(products, many=True).data
+
+class UserSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = ['username', 'first_name', 'last_name', 'email']

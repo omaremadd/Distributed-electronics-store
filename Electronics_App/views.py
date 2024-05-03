@@ -3,7 +3,7 @@ from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
 from rest_framework import generics
 from .models import Product, Payment, Order, Customer
-from .serializers import ProductSerializer, PaymentSerializer, OrderSerializer
+from .serializers import ProductSerializer, PaymentSerializer, OrderSerializer, UserSerializer
 from .forms import SignUpForm
 # Create your views here.
 
@@ -23,6 +23,11 @@ def signup(request):
     else:
         form = SignUpForm()
     return render(request, 'signup.html', {'form': form})
+
+class UserProfile(generics.RetrieveAPIView):
+    serializer_class = UserSerializer
+    def get_object(self):
+        return self.request.user
 
 class ProductList(generics.ListCreateAPIView):
     queryset = Product.objects.all()
