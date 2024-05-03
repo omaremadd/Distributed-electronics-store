@@ -29,6 +29,9 @@ class UserProfile(generics.RetrieveAPIView):
     def get_object(self):
         return self.request.user
 
+def profile_view(request):
+    return render(request, 'profile.html')
+
 class ProductList(generics.ListCreateAPIView):
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
