@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     var header = document.createElement('header');
     header.innerHTML = `
         <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
@@ -59,7 +59,7 @@ document.addEventListener('DOMContentLoaded', function() {
     document.body.insertBefore(header, document.body.firstChild);
 });
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     var offcanvas = document.createElement('div');
     offcanvas.className = 'offcanvas offcanvas-end';
     offcanvas.setAttribute('data-bs-scroll', 'true');
