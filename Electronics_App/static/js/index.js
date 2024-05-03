@@ -46,7 +46,7 @@ function attachEvListener(){
 
 function navigateToCategory(){
     
-    window.location.href="category.html";
+    window.location.href="";
    
    
 }
