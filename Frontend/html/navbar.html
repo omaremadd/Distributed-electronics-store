@@ -43,14 +43,6 @@
                 <li class="nav-item mx-lg-2">
                     <a class="nav-link active" href="{% url 'profile' %}">Profile</a>
                 </li>
-                {% if user.is_authenticated %}
-                <li class="nav-item mx-lg-2">
-                    <form action="{% url 'logout' %}" method="post">
-                        {% csrf_token %}
-                        <button class="btn btn-outline-light" type="submit">Logout</button>
-                    </form>
-                </li>
-                {% endif %}
                 <li class="nav-item mx-lg-2">
                     <button class="btn btn-outline-none text-light float-on-hover" type="button"
                         data-bs-toggle="offcanvas" data-bs-target="#Id1" aria-controls="Id1">
@@ -63,6 +55,14 @@
                         <span class="d-lg-none">Cart</span>
                     </button>
                 </li>
+                {% if user.is_authenticated %}
+                <li class="nav-item mx-lg-2">
+                    <form action="{% url 'logout' %}" method="post">
+                        {% csrf_token %}
+                        <button class="btn btn-outline-light" type="submit">Logout</button>
+                    </form>
+                </li>
+                {% endif %}
             </div>
         </div>
     </div>
