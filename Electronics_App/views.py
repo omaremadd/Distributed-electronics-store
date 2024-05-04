@@ -52,6 +52,10 @@ def product_view(request, pk):
     product = Product.objects.get(pk=pk)
     return render(request, 'product.html', {'product': product})
 
+def category_view(request, pk):
+    category = Category.objects.get(pk=pk)
+    return render(request, 'category.html', {'category': category})
+
 class CategoryList(generics.ListCreateAPIView):
     queryset = Category.objects.all()
     serializer_class = CategoryListSerializer

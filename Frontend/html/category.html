@@ -1,11 +1,12 @@
-<!doctype html>
+{% load static %}
+!doctype html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Home</title>
-    <link href="../css/bootstrap.min.css" rel="stylesheet">
-    <link href="../css/styles.css" rel="stylesheet">
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/styles.css' %}" rel="stylesheet">
     {% comment %} <script src="../js/navbar.js"></script> {% endcomment %}
 </head>
 <body>
@@ -24,7 +25,7 @@
         <div class="col-6 col-sm-3 mx-3 mb-6 float-on-hover-card">
           <a href="product.html" class="card-link link-underline link-underline-opacity-0">
             <div class="card text-start">
-              <img class="card-img-top" src="../img/600x400.png" alt="Title" />
+              <img class="card-img-top" src="https://placehold.co/600x400.png" alt="Title" />
               <div class="card-body placeholder-glow">
                 <h4 class="card-title placeholder">placeholder1</h4>
                 <p class="card-text">
@@ -37,86 +38,7 @@
             </div>
           </a>
         </div>
-        <div class="col-6 col-sm-3 mx-3 mb-6 float-on-hover-card">
-          <a href="#" class="card-link link-underline link-underline-opacity-0">
-            <div class="card text-start">
-              <img class="card-img-top" src="../img/600x400.png" alt="Title" />
-              <div class="card-body placeholder-glow">
-                <h4 class="card-title placeholder">placeholder2</h4>
-                <p class="card-text">
-                  <span class="placeholder col-7"></span>
-                  <span class="placeholder col-4"></span>
-                  <span class="placeholder col-4"></span>
-                </p>
-                <button class="btn btn-primary disabled placeholder col-5" aria-disabled="true"><span class="visually-hidden">Add to Cart</span></button>
-              </div>
-            </div>
-          </a>
-        </div>
-        <div class="col-6 col-sm-3 mx-3 mb-6 float-on-hover-card">
-          <a href="#" class="card-link link-underline link-underline-opacity-0">
-            <div class="card text-start">
-              <img class="card-img-top" src="../img/600x400.png" alt="Title" />
-              <div class="card-body placeholder-glow">
-                <h4 class="card-title placeholder">placeholder3</h4>
-                <p class="card-text">
-                  <span class="placeholder col-7"></span>
-                  <span class="placeholder col-4"></span>
-                  <span class="placeholder col-4"></span>
-                </p>
-                <button class="btn btn-primary disabled placeholder col-5" aria-disabled="true"><span class="visually-hidden">Add to Cart</span></button>
-              </div>
-            </div>
-          </a>
-        </div>
-        <div class="col-6 col-sm-3 mx-3 mb-6 float-on-hover-card">
-          <a href="#" class="card-link link-underline link-underline-opacity-0">
-            <div class="card text-start">
-              <img class="card-img-top" src="../img/600x400.png" alt="Title" />
-              <div class="card-body placeholder-glow">
-                <h4 class="card-title placeholder">placeholder3</h4>
-                <p class="card-text">
-                  <span class="placeholder col-7"></span>
-                  <span class="placeholder col-4"></span>
-                  <span class="placeholder col-4"></span>
-                </p>
-                <button class="btn btn-primary disabled placeholder col-5" aria-disabled="true"><span class="visually-hidden">Add to Cart</span></button>
-              </div>
-            </div>
-          </a>
-        </div> 
-        <div class="col-6 col-sm-3 mx-3 mb-6 float-on-hover-card">
-          <a href="#" class="card-link link-underline link-underline-opacity-0">
-            <div class="card text-start">
-              <img class="card-img-top" src="../img/600x400.png" alt="Title" />
-              <div class="card-body placeholder-glow">
-                <h4 class="card-title placeholder">placeholder3</h4>
-                <p class="card-text">
-                  <span class="placeholder col-7"></span>
-                  <span class="placeholder col-4"></span>
-                  <span class="placeholder col-4"></span>
-                </p>
-                <button class="btn btn-primary disabled placeholder col-5" aria-disabled="true"><span class="visually-hidden">Add to Cart</span></button>
-              </div>
-            </div>
-          </a>
-        </div> 
-        <div class="col-6 col-sm-3 mx-3 mb-6 float-on-hover-card">
-          <a href="#" class="card-link link-underline link-underline-opacity-0">
-            <div class="card text-start">
-              <img class="card-img-top" src="../img/600x400.png" alt="Title" />
-              <div class="card-body placeholder-glow">
-                <h4 class="card-title placeholder">placeholder3</h4>
-                <p class="card-text">
-                  <span class="placeholder col-7"></span>
-                  <span class="placeholder col-4"></span>
-                  <span class="placeholder col-4"></span>
-                </p>
-                <button class="btn btn-primary disabled placeholder col-5" aria-disabled="true"><span class="visually-hidden">Add to Cart</span></button>
-              </div>
-            </div>
-          </a>
-        </div> 
+        <!-- add more products here -->
       </div>
     </div>
 
