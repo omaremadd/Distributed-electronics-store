@@ -3,8 +3,8 @@ from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
 from rest_framework import generics
 from MySQLdb import IntegrityError
-from .models import Product, Payment, Order, Customer
-from .serializers import ProductSerializer, PaymentSerializer, OrderSerializer, UserSerializer
+from .models import Product, Payment, Order, Customer, Category
+from .serializers import *
 from .forms import SignUpForm
 # Create your views here.
 
@@ -39,10 +39,6 @@ class UserProfile(generics.RetrieveAPIView):
 def profile_view(request):
     return render(request, 'profile.html')
 
-def product_view(request, pk):
-    product = Product.objects.get(pk=pk)
-    return render(request, 'product.html', {'product': product})
-
 class ProductList(generics.ListCreateAPIView):
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
@@ -51,6 +47,20 @@ class ProductDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
     lookup_field = 'pk'
+
+def product_view(request, pk):
+    product = Product.objects.get(pk=pk)
+    return render(request, 'product.html', {'product': product})
+
+class CategoryList(generics.ListCreateAPIView):
+    queryset = Category.objects.all()
+    serializer_class = CategoryListSerializer
+
+class CategoryDetail(generics.RetrieveUpdateDestroyAPIView):
+    serializer_class = CategorySerializer
+    lookup_field = 'pk'
+    def get_queryset(self):
+        return Category.objects.all().prefetch_related('products')
 
 class PaymentList(generics.ListCreateAPIView):
     queryset = Payment.objects.all()

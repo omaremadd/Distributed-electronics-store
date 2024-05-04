@@ -26,7 +26,6 @@ class Customer(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     phone = models.CharField(max_length=50, unique=True)
 
-
 class Order(models.Model):
     customer= models.ForeignKey(User, on_delete=models.CASCADE, related_name='orders')
     Delivery_date = models.DateField()
@@ -42,17 +41,22 @@ class Payment(models.Model):
 
 class Category(models.Model):
     title = models.CharField(max_length=200)
-
+    def __str__(self):
+        return self.title
 
 class Product(models.Model):
     name = models.CharField(max_length=200)
     price = models.FloatField(default=100)
     quantity = models.IntegerField()
     description = models.TextField(default='')
-
-    category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name='category')
+    category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name='products')
     picture = models.ImageField(upload_to="img", default="")
 
+class OrderItem(models.Model):
+    order = models.ForeignKey(Order, on_delete=models.CASCADE, related_name='items')
+    product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='order_items')
+    price = models.IntegerField()
+    quantity = models.SmallIntegerField(default=1)
 
 
 # class update(models.Model):
@@ -62,8 +66,3 @@ class Product(models.Model):
 #     remaining_quantity = models.IntegerField()
 
 
-class OrderItem(models.Model):
-    order = models.ForeignKey(Order, on_delete=models.CASCADE, related_name='items')
-    product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='order_items')
-    price = models.IntegerField()
-    quantity = models.SmallIntegerField(default=1)
