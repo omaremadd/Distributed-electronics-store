@@ -66,14 +66,9 @@ class CategoryDetail(generics.RetrieveUpdateDestroyAPIView):
     def get_queryset(self):
         return Category.objects.all().prefetch_related('products')
 
-class PaymentList(generics.ListCreateAPIView):
-    queryset = Payment.objects.all()
-    serializer_class = PaymentSerializer
+class AddProductToOrder(generics.CreateAPIView):
+    serializer_class = AddProductToOrderSerializer
 
-class PaymentDetail(generics.RetrieveUpdateDestroyAPIView):
-    queryset = Payment.objects.all()
-    serializer_class = PaymentSerializer
-    lookup_field = 'pk'
 
 class OrderList(generics.ListCreateAPIView):
     queryset = Order.objects.all()
@@ -83,3 +78,12 @@ class OrderDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Order.objects.all()
     serializer_class = OrderSerializer
     lookup_field = 'pk'    
+
+class PaymentList(generics.ListCreateAPIView):
+    queryset = Payment.objects.all()
+    serializer_class = PaymentSerializer
+
+class PaymentDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Payment.objects.all()
+    serializer_class = PaymentSerializer
+    lookup_field = 'pk'

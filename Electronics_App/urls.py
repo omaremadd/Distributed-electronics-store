@@ -17,8 +17,9 @@ urlpatterns = [
     path('API/categories/<pk>/', views.CategoryDetail.as_view(), name='category_detail'),
     path('API/products/', views.ProductList.as_view(), name='product_list'),
     path('API/products/<pk>/', views.ProductDetail.as_view(), name='product_detail'),
-    path('API/payments/', views.PaymentList.as_view(), name='payment_list'),
-    path('API/payments/<pk>/', views.PaymentDetail.as_view(), name='payment_detail'),
+    path('API/order/', views.AddProductToOrder.as_view(), name='order_item_create'),
     path('API/orders/', views.OrderList.as_view(), name='order_list'),
     path('API/orders/<pk>/', views.OrderDetail.as_view(), name='order_detail'),
+    path('API/payments/', views.PaymentList.as_view(), name='payment_list'),
+    path('API/payments/<pk>/', views.PaymentDetail.as_view(), name='payment_detail'),
 ]
