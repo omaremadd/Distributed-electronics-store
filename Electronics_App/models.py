@@ -70,7 +70,7 @@ class Product(models.Model):
     Product_id = models.UUIDField(default=uuid.uuid4, editable=False, primary_key=True, unique=True)
     quantity = models.IntegerField(default=1)
     # fadel image
-    picture = models.ImageField(upload_to="img", default="")
+    picture = models.ImageField(upload_to="Electronics_App/static/img", default="")
     #Description 
     description = models.TextField(default='')
 

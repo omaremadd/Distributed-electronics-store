@@ -6,9 +6,11 @@ var productQuantity = document.getElementById('product_quantity');
 var productPrice = document.getElementById('product_price');
 var addButton = document.getElementById('add_btn');
 var cartButton = document.getElementById('cart_btn');
+var productDescription = document.getElementById('product_description');
+var img = document.getElementById('product_img');
 var product = null;
 async function getProduct(){
-    var response = await fetch(`http://127.0.0.1:8000/API/products/${product_id}/?format=json`);
+    var response = await fetch(`http://${window.location.host}/API/products/${product_id}/?format=json`);
     var finalResponse = await response.json();
     product = finalResponse;
     console.log(product);
@@ -23,6 +25,7 @@ function displayProduct(){
     addButton.classList.remove('placeholder');
     cartButton.classList.remove('placeholder');
     product_name_tag.innerHTML=product.name;
+    productDescription.classList.remove('placeholder');
     var stock = product.quantity;
     if(stock != 0){
         productQuantity.innerHTML= `${product.quantity} in stock`;
@@ -35,7 +38,10 @@ function displayProduct(){
         addButton.classList.replace('btn-primary','btn-secondary');
         addButton.classList.add('disabled');
     }
+    productDescription.innerHTML = product.description;
     productPrice.innerHTML = product.price + ' EGP';
+    img.src = 'http://' + window.location.host + '/static/img/' + product.picture.split("/").pop();
+    img.style = 'height:450px; width:600px; object-fit: contain;';
 }
 
 function addToCartButton(){

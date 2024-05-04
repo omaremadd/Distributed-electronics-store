@@ -1,7 +1,7 @@
 var productHolder = document.getElementById('productholder');
 var products = [];
 async function getproducts(){
-    var response = await fetch(`http://127.0.0.1:8000/API/products/?format=json`);
+    var response = await fetch(`http://${window.location.host}/API/products/?format=json`);
     var finalResponse = await response.json();
     // console.log(finalResponse[0].image);
     products = finalResponse;
@@ -28,10 +28,11 @@ function cart_text(stock) {
 function displayproducts(displayedProducts){
     var productCard =``;
     for(var i=0;i<displayedProducts.length;i++){
+        var img_name = displayedProducts[i].picture.split('/').pop();
         productCard+=`<div class="col-6 col-sm-3 mx-3 mb-6 float-on-hover-card">
         <a href="product/${displayedProducts[i].Product_id}" class="card-link link-underline link-underline-opacity-0">
           <div class="card text-start">
-            <img class="card-img-top" src="https://placehold.co/600x400" alt="${displayedProducts[i].name}" />
+            <img class="card-img-top" src="http://${window.location.host}/static/img/${img_name}" alt="${displayedProducts[i].name}" style="height:200px; width:100%;object-fit: contain;"/>
             <div class="card-body">
               <h4 class="card-title">${displayedProducts[i].name}</h4>
               <p class="card-text">

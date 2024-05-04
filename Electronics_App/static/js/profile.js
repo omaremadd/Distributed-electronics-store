@@ -5,7 +5,7 @@ var lastname = document.getElementById('lastname');
 var email = document.getElementById('email');
 var user = null;
 async function getuser(){
-    var response = await fetch(`http://127.0.0.1:8000/API/profile/?format=json`);
+    var response = await fetch(`http://${window.location.host}/API/profile/?format=json`);
     var finalResponse = await response.json();
     console.log(finalResponse.username);
     user = finalResponse;
