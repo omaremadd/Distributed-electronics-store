@@ -34,19 +34,42 @@ class CategorySerializer(serializers.ModelSerializer):
         model = Category
         fields = '__all__'
 
+class AddProductToOrderSerializer(serializers.Serializer):
+    order = serializers.SlugRelatedField(slug_field='id', queryset=Order.objects.all())
+    product = serializers.SlugRelatedField(slug_field='name', queryset=Product.objects.all())
+    quantity = serializers.IntegerField(default=1)
+
+    def create(self, validated_data):
+        order = validated_data.get('order')
+        product = validated_data.get('product')
+        quantity = validated_data.get('quantity')
+
+        order_item = OrderItem.objects.create(
+            order=order,
+            product=product,
+            price=product.price,
+            quantity=quantity
+        )
+
+        return order_item
+
+class OrderItemSerializer(serializers.ModelSerializer):
+    product = ProductSerializer()
+    class Meta:
+        model = OrderItem
+        fields = ['product', 'price', 'quantity']
+
+class OrderSerializer(serializers.ModelSerializer):
+    items = OrderItemSerializer(many=True, read_only=True)
+    class Meta:
+        model = Order
+        fields = ['id', 'customer', 'Delivery_date', 'Order_date', 'items', 'address', 'Complain']
+    # def get_products(self, obj):
+    #     contains = OrderItem.objects.filter(Order=obj)
+    #     products = [c.Product for c in contains]
+    #     return ProductSerializer(products, many=True).data
+
 class PaymentSerializer(serializers.ModelSerializer):
     class Meta:
         model = Payment
         fields = '__all__'
-
-class OrderSerializer(serializers.ModelSerializer):
-    products = serializers.SerializerMethodField()
-
-    class Meta:
-        model = Order
-        fields = ['customer', 'Delivery_date', 'Order_date', 'Complain', 'products','address']
-    
-    def get_products(self, obj):
-        contains = OrderItem.objects.filter(Order=obj)
-        products = [c.Product for c in contains]
-        return ProductSerializer(products, many=True).data
