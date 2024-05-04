@@ -9,6 +9,13 @@ console.log(cartProduct);
     console.log(productsInCart);
 })();
 
+function shortenText(text, maxLength) {
+    if (text.length > maxLength) {
+        return text.substring(0, maxLength) + '...';
+    }
+    return text;
+}
+
 function displayCartProducts(){
     var holder = ``
     var totalPrice=0;
@@ -22,7 +29,7 @@ function displayCartProducts(){
                 <strong class="" style="font-size: large;">${productsInCart[i].name}</strong>
             </div>
             <div class="row">
-                <span class="">${productsInCart[i].description}</span>
+                <span class="">${shortenText(productsInCart[i].description,30)}</span>
             </div>
             <div class="row">
                 <div class="col">
