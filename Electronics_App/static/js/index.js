@@ -9,6 +9,7 @@ async function getproducts(){
     searchProducts();
     // attachEvListener();
 }
+
 getproducts();
 
 function cart_disabled(stock) {

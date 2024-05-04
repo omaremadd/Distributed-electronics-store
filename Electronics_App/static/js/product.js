@@ -1,6 +1,6 @@
 var link=window.location.href.split("/");
 var product_id =link[link.length-2] ;
-console.log(product_id);
+// console.log(product_id);
 var product_name_tag = document.getElementById('product_name');
 var productQuantity = document.getElementById('product_quantity');
 var productPrice = document.getElementById('product_price');
@@ -13,9 +13,10 @@ async function getProduct(){
     var response = await fetch(`http://${window.location.host}/API/products/${product_id}/?format=json`);
     var finalResponse = await response.json();
     product = finalResponse;
-    console.log(product);
+    // console.log(product);
     displayProduct();
     document.getElementsByTagName('title')[0].innerHTML=product.name;
+    addToCartButton();
 }
 getProduct();
 
@@ -47,6 +48,7 @@ function displayProduct(){
 
 function addToCartButton(){
     addButton.addEventListener('click',function(){
-        sessionStorage.setItem(product.product_id,product);
+        sessionStorage.setItem(product.id,JSON.stringify(product));
+        window.location.reload();
     })
 }
