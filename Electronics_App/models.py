@@ -50,7 +50,7 @@ class Product(models.Model):
     quantity = models.IntegerField()
     description = models.TextField(default='')
     category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name='products')
-    picture = models.ImageField(upload_to="img", default="")
+    picture = models.ImageField(upload_to="Electronics_App/static/img", default="")
 
 class OrderItem(models.Model):
     order = models.ForeignKey(Order, on_delete=models.CASCADE, related_name='items')

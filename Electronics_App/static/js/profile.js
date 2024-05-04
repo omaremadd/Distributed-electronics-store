@@ -19,5 +19,5 @@ function displayUser() {
     firstname.innerHTML = user.first_name;
     lastname.innerHTML = user.last_name;
     email.innerHTML = user.email;
-    phone.innerHTML = user.phone;
+    phone.innerHTML = `+20${user.phone}`;
 }

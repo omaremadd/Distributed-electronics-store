@@ -30,7 +30,7 @@ function displayproducts(displayedProducts){
     for(var i=0;i<displayedProducts.length;i++){
         var img_name = displayedProducts[i].picture.split('/').pop();
         productCard+=`<div class="col-9 col-sm-3 mx-3 mb-6 float-on-hover-card">
-        <a href="product/${displayedProducts[i].Product_id}" class="card-link link-underline link-underline-opacity-0">
+        <a href="product/${displayedProducts[i].id}" class="card-link link-underline link-underline-opacity-0">
           <div class="card text-start">
             <img class="card-img-top" src="http://${window.location.host}/static/img/${img_name}" alt="${displayedProducts[i].name}" style="height:200px; width:100%;object-fit: contain;"/>
             <div class="card-body">
