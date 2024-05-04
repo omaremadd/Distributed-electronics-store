@@ -59,6 +59,21 @@ class OrderItem(models.Model):
     quantity = models.SmallIntegerField(default=1)
 
 
+class OrderItem(models.Model):
+    order = models.ForeignKey(Order, on_delete=models.CASCADE, related_name='items')
+    product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='order_items')
+    price = models.IntegerField()
+    quantity = models.SmallIntegerField(default=1)
+
+class Cart(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    
+class CartItem(models.Model):
+    cart = models.ForeignKey(Cart, on_delete=models.CASCADE)
+    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    quantity = models.IntegerField(default=1)
+
+
 # class update(models.Model):
 #     product = models.ForeignKey(Product, on_delete=models.CASCADE)
 #     seller = models.ForeignKey(Seller, on_delete=models.CASCADE)
