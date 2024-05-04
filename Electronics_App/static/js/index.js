@@ -77,7 +77,7 @@ function search(){
 }
 function productMatch(item,value){
     var name = item.name;
-    if(name.includes(value)){
+    if(name.toLowerCase().includes(value.toLowerCase())){
         searchedProducts.push(item);
     }
 }
