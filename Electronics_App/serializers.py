@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Product, Payment, Order, OrderItem
+from .models import Product, Payment, Order, OrderItem, Customer
 from django.contrib.auth.models import User
 
 
@@ -26,6 +26,13 @@ class OrderSerializer(serializers.ModelSerializer):
         return ProductSerializer(products, many=True).data
 
 class UserSerializer(serializers.ModelSerializer):
+    phone = serializers.SerializerMethodField()
     class Meta:
         model = User
-        fields = ['username', 'first_name', 'last_name', 'email']
+        fields = ['username', 'first_name', 'last_name', 'email', 'phone']
+    def get_phone(self, obj):
+        try:
+            customer = Customer.objects.get(user=obj)
+            return customer.phone
+        except Customer.DoesNotExist:
+            return None

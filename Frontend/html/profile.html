@@ -1,6 +1,7 @@
 {% load static %}
 <!doctype html>
 <html lang="en">
+
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -12,7 +13,8 @@
     window.location.href = "{% url 'login' %}";
   </script>
   {% endif %}
-  {% comment %} <script src="../js/navbar.js"></script> {% endcomment %}
+  {% comment %}
+  <script src="../js/navbar.js"></script> {% endcomment %}
 
   <style>
     /* .card {
@@ -20,6 +22,7 @@
     } */
   </style>
 </head>
+
 <body>
   {% include 'navbar.html' %}
   {% include 'cart.html' %}
@@ -42,25 +45,28 @@
                     <td id="firstname"></td>
                   </tr>
                   <tr>
-                    <th >Last Name</th>
+                    <th>Last Name</th>
                     <td id="lastname"></td>
                   </tr>
                   <tr>
-                    <th >Email</th>
+                    <th>Email</th>
                     <td id="email"></td>
                   </tr>
                   <tr>
                     <th>Phone Number</th>
-                    <td id="phonenumber">{{ user.phone_number }}</td>
+                    <td id="phone"></td>
                   </tr>
                 </tbody>
               </table>
               <hr>
               <h2>Purchased Items <span class="badge bg-primary">3</span></h2>
               <ul class="list-group">
-                <li class="list-group-item"><a href="product.html" class="link-underline link-underline-opacity-0">An item</a></li>
-                <li class="list-group-item"><a href="product.html" class="link-underline link-underline-opacity-0">A second item</a></li>
-                <li class="list-group-item"><a href="product.html" class="link-underline link-underline-opacity-0">A third item</a></li>
+                <li class="list-group-item"><a href="product.html" class="link-underline link-underline-opacity-0">An
+                    item</a></li>
+                <li class="list-group-item"><a href="product.html" class="link-underline link-underline-opacity-0">A
+                    second item</a></li>
+                <li class="list-group-item"><a href="product.html" class="link-underline link-underline-opacity-0">A
+                    third item</a></li>
               </ul>
             </div>
           </div>
@@ -72,7 +78,10 @@
   <footer style="margin-bottom: 10vh">
   </footer>
 
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+    crossorigin="anonymous"></script>
   <script src="{% static 'js/profile.js' %}"></script>
 </body>
+
 </html>

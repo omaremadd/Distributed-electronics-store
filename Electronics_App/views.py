@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
 from rest_framework import generics
+from MySQLdb import IntegrityError
 from .models import Product, Payment, Order, Customer
 from .serializers import ProductSerializer, PaymentSerializer, OrderSerializer, UserSerializer
 from .forms import SignUpForm
@@ -15,7 +16,13 @@ def signup(request):
         form = SignUpForm(request.POST)
         if form.is_valid():
             user = form.save()
-            #Customer.objects.create(user=user)
+            customer = Customer.objects.create(user=user)
+            try:
+                customer.phone = form.cleaned_data.get('phone')
+                customer.save()
+            except IntegrityError:
+                form.add_error('phone', 'This phone number is already in use.')
+                return render(request, 'signup.html', {'form': form})
             login(request, user)
             return redirect('home')
         else:
