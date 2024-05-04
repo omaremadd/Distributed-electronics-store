@@ -2,7 +2,9 @@
  
 ## Requirements (First time only):
 1. Install Python
-2. Install PostgreSQL
+2. Install Xampp
+   1. Start Apache server
+   2. Start MySQL server
 3. Open up a Command Prompt (not PowerShell!)
 4. Run the following commands from the repo directory:
 ```cmd
