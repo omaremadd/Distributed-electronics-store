@@ -15,6 +15,7 @@ async function getProduct(){
     product = finalResponse;
     console.log(product);
     displayProduct();
+    document.getElementsByTagName('title')[0].innerHTML=product.name;
 }
 getProduct();
 
