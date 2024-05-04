@@ -2,9 +2,11 @@
  
 ## Requirements (First time only):
 1. Install Python
-2. Install Xampp
+2. Install [Xampp](https://www.apachefriends.org/)
    1. Start Apache server
    2. Start MySQL server
+      1. Open [this link](http://localhost/phpmyadmin)
+      2. Create a new database called `shop_django`
 3. Open up a Command Prompt (not PowerShell!)
 4. Run the following commands from the repo directory:
 ```cmd
