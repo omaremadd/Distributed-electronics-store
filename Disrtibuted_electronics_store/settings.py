@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-f9ss419kr)@&p^&5q&$*3gbxv-b8_yu7qrnsj=a!5o**+z^wf2
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -79,12 +79,15 @@ WSGI_APPLICATION = 'Disrtibuted_electronics_store.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'postgres',
-        'USER': 'postgres',
-        'PASSWORD': 'zainab98765',
-        'HOST': 'localhost',
-        'PORT': '5432',
+       'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'shop_django',
+        'USER': 'root',
+        'PASSWORD': '',
+        'HOST': '127.0.0.1',
+        'PORT': '3306',
+        'OPTIONS' : {
+            'init_command' : "SET sql_mode='STRICT_TRANS_TABLES'"
+        }
     }
 }
 
