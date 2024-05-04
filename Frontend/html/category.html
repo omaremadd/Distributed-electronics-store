@@ -1,10 +1,10 @@
 {% load static %}
-!doctype html>
+<!doctype html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Home</title>
+    <title>Category</title>
     <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
     <link href="{% static 'css/styles.css' %}" rel="stylesheet">
     {% comment %} <script src="../js/navbar.js"></script> {% endcomment %}
@@ -16,12 +16,12 @@
     <main style="margin-top:10vh;"> 
     <div class="container">
       <h1 class="placeholder-glow">
-        <a href="home.html" class="link-underline link-underline-opacity-0" style="font-size: xx-large;">
+        <a href="{% url 'home' %}" class="link-underline link-underline-opacity-0" style="font-size: xx-large;">
           « Back
         </a>
-        Category Placeholder
+        <span id="categoryTitle"></span>
       </h1> <hr><br>
-      <div class="d-flex justify-content-center flex-wrap">
+      <div class="d-flex justify-content-center flex-wrap" id="productHolder">
         <div class="col-6 col-sm-3 mx-3 mb-6 float-on-hover-card">
           <a href="product.html" class="card-link link-underline link-underline-opacity-0">
             <div class="card text-start">
@@ -49,6 +49,7 @@
     </footer>
   
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script src="{% static 'js/category.js' %}"></script>
 </body>
 </html>
   
