@@ -6,6 +6,9 @@ from MySQLdb import IntegrityError
 from .models import Product, Payment, Order, Customer, Category
 from .serializers import *
 from .forms import SignUpForm
+from django.http import HttpResponse
+from django.views import View
+import requests
 # Create your views here.
 
 def home_view (request):
@@ -65,6 +68,15 @@ class CategoryDetail(generics.RetrieveUpdateDestroyAPIView):
     lookup_field = 'pk'
     def get_queryset(self):
         return Category.objects.all().prefetch_related('products')
+
+class DeleteCategoryView(View):
+    def get(self, request, *args, **kwargs):
+        category_id = kwargs['category_id']
+        response = requests.delete(f'http://127.0.0.1:8000/API/categories/{category_id}/')
+        if response.status_code == 204:
+            return HttpResponse("Category deleted successfully")
+        else:
+            return HttpResponse(f"Failed to delete category, status code: {response.status_code}, response: {response.text}")
 
 class AddProductToOrder(generics.CreateAPIView):
     serializer_class = AddProductToOrderSerializer
