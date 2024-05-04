@@ -10,7 +10,7 @@
 3. Open up a Command Prompt (not PowerShell!)
 4. Run the following commands from the repo directory:
 ```cmd
-1-make-env.bat
+1-make-venv.bat
 ```
 ```cmd
 2-activate-venv.bat
