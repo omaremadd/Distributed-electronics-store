@@ -38,10 +38,10 @@ function displayProduct(){
         addButton.classList.replace('btn-primary','btn-secondary');
         addButton.classList.add('disabled');
     }
-    productDescription.innerHTML = product.description;
+    productDescription.innerHTML = `<pre style="font-family: Arial, san-serif;">${product.description}</pre>`;
     productPrice.innerHTML = product.price + ' EGP';
     img.src = 'http://' + window.location.host + '/static/img/' + product.picture.split("/").pop();
-    img.style = 'height:450px; width:600px; object-fit: contain;';
+    img.style = 'height:450px; width:600px; max-width:90vw ; object-fit: contain;';
 }
 
 function addToCartButton(){
