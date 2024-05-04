@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', function() {
     var categoryDropDown = document.getElementById('cat-dropdown');
 
     async function getCategories() {
-        var response = await fetch('http://127.0.0.1:8000/API/categories/?format=json');
+        var response = await fetch(`http://${window.location.host}/API/categories/?format=json`);
         var finalresponse = await response.json();
         categories = finalresponse;
         console.log(categories);
