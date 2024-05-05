@@ -5,6 +5,7 @@ from django.contrib.auth import views as auth_views
 from .views import DeleteCategoryView
 
 
+
 urlpatterns = [
     path('', views.home_view, name='home'),
     path('signup/', views.signup, name='signup'),
