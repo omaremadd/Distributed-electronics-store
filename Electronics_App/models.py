@@ -45,6 +45,7 @@ class Order(models.Model):
     Order_date = models.DateTimeField(auto_now_add=True)
     Complain = models.TextField()
     address = models.TextField()
+    total_price = models.FloatField(default=100)
 
 class OrderItem(models.Model):
     order = models.ForeignKey(Order, on_delete=models.CASCADE, related_name='items')

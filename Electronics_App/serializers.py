@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Product, Payment, Order, OrderItem, Customer, Category
+from .models import Product, Order, OrderItem, Customer, Category
 from django.contrib.auth.models import User
 from datetime import datetime, timedelta
 
@@ -16,13 +16,18 @@ class UserSerializer(serializers.ModelSerializer):
             return None
 
 class ProductSerializer(serializers.ModelSerializer):
-    category = serializers.SlugRelatedField(
+    category_title = serializers.SlugRelatedField(
+        source='category',
         slug_field='title',
-        queryset=Category.objects.all()
-        )
+        read_only=True
+    )
+    category_id = serializers.SerializerMethodField()
     class Meta:
         model = Product
-        fields = '__all__'
+        fields = ['id', 'name', 'price', 'quantity', 'description', 'category_title', 'category_id', 'picture']
+    
+    def get_category_id(self, obj):
+        return obj.category.id
 
 class CategoryListSerializer(serializers.ModelSerializer):
     class Meta:
@@ -43,10 +48,11 @@ class PlaceOrderSerializer(serializers.ModelSerializer):
     items = ProductItemSerializer(many=True)
     Delivery_date = serializers.DateField(read_only=True)
     Complain = serializers.CharField(allow_blank=True, required=False)
+    total_price = serializers.SerializerMethodField()
 
     class Meta:
         model = Order
-        fields = ['id', 'items', 'Order_date','Delivery_date', 'address', 'Complain']
+        fields = ['id', 'items', 'total_price', 'Order_date','Delivery_date', 'address', 'Complain']
 
     def create(self, validated_data):
         customer = self.context['request'].user
@@ -57,19 +63,22 @@ class PlaceOrderSerializer(serializers.ModelSerializer):
             Complain = 'No complaints'
         # Set the delivery date to the current date plus 3 days
         delivery_date = datetime.now().date() + timedelta(days=3)
-        # order_date = datetime.now()
 
         order = Order.objects.create(
             customer=customer, 
             Delivery_date=delivery_date, 
-            # Order_date=order_date,
             address=address, 
             Complain=Complain
         )
 
+        total_price = 0
         for item in items:
             product = Product.objects.get(pk=item.get('product').pk)
             quantity = item.get('quantity')
+            # Check if the requested quantity is available
+            if product.quantity < quantity:
+                raise serializers.ValidationError(f'Not enough quantity for product {product.pk}')
+            total_price += product.price * quantity
 
             OrderItem.objects.create(
                 order=order,
@@ -77,8 +86,17 @@ class PlaceOrderSerializer(serializers.ModelSerializer):
                 price=product.price,
                 quantity=quantity
             )
+            # Update the quantity of the product
+            product.quantity -= quantity
+            product.save()
+
+        order.total_price = total_price
+        order.save()
 
         return order
+    
+    def get_total_price(self, obj):
+        return obj.total_price
 
 # class AddProductToOrderSerializer(serializers.Serializer):
 #     order = serializers.SlugRelatedField(slug_field='id', queryset=Order.objects.all())
@@ -115,30 +133,30 @@ class OrderSerializer(serializers.ModelSerializer):
     #     products = [c.Product for c in contains]
     #     return ProductSerializer(products, many=True).data
 
-class PaymentSerializer(serializers.ModelSerializer):
-    amount = serializers.SerializerMethodField()
+# class PaymentSerializer(serializers.ModelSerializer):
+#     amount = serializers.SerializerMethodField()
 
-    class Meta:
-        model = Payment
-        fields = ['id', 'order', 'method', 'amount']  # Include 'amount' as a read-only field
+#     class Meta:
+#         model = Payment
+#         fields = ['id', 'order', 'method', 'amount']  # Include 'amount' as a read-only field
 
-    def get_amount(self, obj):
-        # Calculate the total amount of the order
-        total_amount = 0
-        for item in OrderItem.objects.filter(order=obj.order):
-            total_amount += item.price * item.quantity
+#     def get_amount(self, obj):
+#         # Calculate the total amount of the order
+#         total_amount = 0
+#         for item in OrderItem.objects.filter(order=obj.order):
+#             total_amount += item.price * item.quantity
 
-        return total_amount
+#         return total_amount
 
-    def create(self, validated_data):
-        order = validated_data.get('order')
+#     def create(self, validated_data):
+#         order = validated_data.get('order')
 
-        # Calculate the total amount of the order
-        total_amount = 0
-        for item in OrderItem.objects.filter(order=order):
-            total_amount += item.price * item.quantity
+#         # Calculate the total amount of the order
+#         total_amount = 0
+#         for item in OrderItem.objects.filter(order=order):
+#             total_amount += item.price * item.quantity
 
-        # Set the amount of the payment to the total amount of the order
-        validated_data['amount'] = total_amount
+#         # Set the amount of the payment to the total amount of the order
+#         validated_data['amount'] = total_amount
 
-        return super().create(validated_data)
+#         return super().create(validated_data)

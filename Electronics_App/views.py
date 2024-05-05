@@ -1,9 +1,8 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import login
-from django.contrib.auth.forms import UserCreationForm
 from rest_framework import generics
 from MySQLdb import IntegrityError
-from .models import Product, Payment, Order, Customer, Category
+from .models import Product, Order, Customer, Category
 from .serializers import *
 from .forms import SignUpForm
 from django.http import HttpResponse
@@ -94,6 +93,12 @@ class PlaceOrderView(generics.ListCreateAPIView):
 # class AddProductToOrder(generics.CreateAPIView):
 #     serializer_class = AddProductToOrderSerializer
 
+class UserOrderList(generics.ListCreateAPIView):
+    serializer_class = OrderSerializer
+
+    def get_queryset(self):
+        return Order.objects.filter(customer=self.request.user)
+
 class OrderList(generics.ListCreateAPIView):
     queryset = Order.objects.all()
     serializer_class = OrderSerializer
@@ -103,11 +108,11 @@ class OrderDetail(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = OrderSerializer
     lookup_field = 'pk'
 
-class PaymentList(generics.ListCreateAPIView):
-    queryset = Payment.objects.all()
-    serializer_class = PaymentSerializer
+# class PaymentList(generics.ListCreateAPIView):
+#     queryset = Payment.objects.all()
+#     serializer_class = PaymentSerializer
 
-class PaymentDetail(generics.RetrieveUpdateDestroyAPIView):
-    queryset = Payment.objects.all()
-    serializer_class = PaymentSerializer
-    lookup_field = 'pk'
+# class PaymentDetail(generics.RetrieveUpdateDestroyAPIView):
+#     queryset = Payment.objects.all()
+#     serializer_class = PaymentSerializer
+#     lookup_field = 'pk'
