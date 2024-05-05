@@ -50,15 +50,22 @@ function form_submit() {
     const product = productsInCart[i];
     var item = {};
     item.product = product.id;
-    item.quantity = Number(sessionStorage.getItem(`cart-quantity-${i}`));
+    let quantity = sessionStorage.getItem(`cart-quantity-${i}`);
+    if (quantity == null) {
+      quantity = 1;
+    }
+    item.quantity = Number(quantity);
     order.items.push(item);
   }
-
+  if (order.items.length == 0) {
+    alert('Cart is empty');
+    return;
+  }
 
   // Get the CSRF token from the cookie
   const csrfToken = getCookie('csrftoken');
 
-  fetch('http://omaremad.run.place/API/placeOrder/', {
+  fetch(`http://${window.location.host}/API/placeOrder/`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -71,6 +78,9 @@ function form_submit() {
       console.log('Order created:', data);
       // Handle the response data as needed
       window.location.pathname = '/profile'
+      for (let i = 0; i < sessionStorage.length; i++) {
+        sessionStorage.removeItem(sessionStorage.key(i));
+      }
     })
     .catch(error => {
       console.error('Error creating order:', error);
