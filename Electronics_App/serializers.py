@@ -1,6 +1,7 @@
 from rest_framework import serializers
 from .models import Product, Payment, Order, OrderItem, Customer, Category
 from django.contrib.auth.models import User
+from datetime import datetime, timedelta
 
 class UserSerializer(serializers.ModelSerializer):
     phone = serializers.SerializerMethodField()
@@ -38,14 +39,33 @@ class ProductItemSerializer(serializers.Serializer):
     product = serializers.SlugRelatedField(slug_field='name', queryset=Product.objects.all())
     quantity = serializers.IntegerField(default=1)
 
-class PlaceOrderSerializer(serializers.Serializer):
-    customer = serializers.PrimaryKeyRelatedField(queryset=Customer.objects.all())
+class PlaceOrderSerializer(serializers.ModelSerializer):
     items = ProductItemSerializer(many=True)
+    Delivery_date = serializers.DateField(read_only=True)
+    Complain = serializers.CharField(allow_blank=True, required=False)
+
+    class Meta:
+        model = Order
+        fields = ['id', 'items', 'Order_date','Delivery_date', 'address', 'Complain']
 
     def create(self, validated_data):
-        customer = validated_data.get('customer')
+        customer = self.context['request'].user
         items = validated_data.pop('items')
-        order = Order.objects.create(customer=customer)
+        address = validated_data.get('address')
+        Complain = validated_data.get('Complain', 'No complaints')
+        if Complain == '':
+            Complain = 'No complaints'
+        # Set the delivery date to the current date plus 3 days
+        delivery_date = datetime.now().date() + timedelta(days=3)
+        # order_date = datetime.now()
+
+        order = Order.objects.create(
+            customer=customer, 
+            Delivery_date=delivery_date, 
+            # Order_date=order_date,
+            address=address, 
+            Complain=Complain
+        )
 
         for item in items:
             product = item.get('product')
@@ -60,24 +80,24 @@ class PlaceOrderSerializer(serializers.Serializer):
 
         return order
 
-class AddProductToOrderSerializer(serializers.Serializer):
-    order = serializers.SlugRelatedField(slug_field='id', queryset=Order.objects.all())
-    product = serializers.SlugRelatedField(slug_field='name', queryset=Product.objects.all())
-    quantity = serializers.IntegerField(default=1)
+# class AddProductToOrderSerializer(serializers.Serializer):
+#     order = serializers.SlugRelatedField(slug_field='id', queryset=Order.objects.all())
+#     product = serializers.SlugRelatedField(slug_field='name', queryset=Product.objects.all())
+#     quantity = serializers.IntegerField(default=1)
 
-    def create(self, validated_data):
-        order = validated_data.get('order')
-        product = validated_data.get('product')
-        quantity = validated_data.get('quantity')
+#     def create(self, validated_data):
+#         order = validated_data.get('order')
+#         product = validated_data.get('product')
+#         quantity = validated_data.get('quantity')
 
-        order_item = OrderItem.objects.create(
-            order=order,
-            product=product,
-            price=product.price,
-            quantity=quantity
-        )
+#         order_item = OrderItem.objects.create(
+#             order=order,
+#             product=product,
+#             price=product.price,
+#             quantity=quantity
+#         )
 
-        return order_item
+#         return order_item
 
 class OrderItemSerializer(serializers.ModelSerializer):
     product = ProductSerializer()
