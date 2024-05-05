@@ -3,7 +3,6 @@ from rest_framework.routers import DefaultRouter
 from Electronics_App import views
 from django.contrib.auth import views as auth_views
 from .views import DeleteCategoryView
-from django.contrib.auth import views as auth_views
 
 
 
@@ -27,5 +26,4 @@ urlpatterns = [
     path('API/payments/', views.PaymentList.as_view(), name='payment_list'),
     path('API/payments/<pk>/', views.PaymentDetail.as_view(), name='payment_detail'),
     path('delete-category/<int:category_id>/', DeleteCategoryView.as_view(), name='delete-category'),
-    # path('accounts/login/', auth_views.LoginView.as_view(template_name='index.html'), name='login'),
 ]
