@@ -36,7 +36,7 @@ class CategorySerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 class ProductItemSerializer(serializers.Serializer):
-    product = serializers.SlugRelatedField(slug_field='name', queryset=Product.objects.all())
+    product = serializers.PrimaryKeyRelatedField(queryset=Product.objects.all())
     quantity = serializers.IntegerField(default=1)
 
 class PlaceOrderSerializer(serializers.ModelSerializer):
@@ -68,7 +68,7 @@ class PlaceOrderSerializer(serializers.ModelSerializer):
         )
 
         for item in items:
-            product = item.get('product')
+            product = Product.objects.get(pk=item.get('product').pk)
             quantity = item.get('quantity')
 
             OrderItem.objects.create(
