@@ -1,11 +1,12 @@
+{% load static %}
 <!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Checkout</title>
-  <link href="../css/bootstrap.min.css" rel="stylesheet">
-  <link href="../css/styles.css" rel="stylesheet">
+  <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+  <link href="{% static 'css/styles.css' %}" rel="stylesheet">
   {% comment %} <script src="../js/navbar.js"></script> {% endcomment %}
 
   <style>
@@ -15,6 +16,7 @@
   </style>
 </head>
 <body>
+  {% csrf_token %}
   {% include 'navbar.html' %}
   {% include 'cart.html' %}
   <main style="margin-top: 10vh;">
@@ -25,75 +27,74 @@
             <div class="card-body">
               <h2 class="card-title mb-2">Checkout</h2>
               <hr>
-              <form>
                 <h4 class="mb-3">Delivery Information</h4>
                 <div class="row mb-3">
                   <div class="col-6">
-                    <input type="text" class="form-control" name="fname" id="" placeholder="First Name">
+                    <input type="text" class="form-control" name="fname" id="fname" placeholder="First Name" value="" disabled>
                   </div>
                   <div class="col-6">
-                    <input type="text" class="form-control" name="lname" id="" placeholder="Last Name">
+                    <input type="text" class="form-control" name="lname" id="lname" placeholder="Last Name" value="" disabled>
                   </div>
                 </div>
                 <div class="row mb-3">
                   <div class="col-12">
                     <div class="input-group col-4">
                       <span class="input-group-text" id="basic-addon1">+20</span>
-                      <input type="text" class="form-control" placeholder="Phone Number" aria-label="Username" aria-describedby="basic-addon1">
+                      <input type="text" class="form-control" id="phone" placeholder="Phone Number" aria-label="Username" aria-describedby="basic-addon1" disabled>
                     </div>
                   </div>
                 </div>
                 <div class="row mb-3">
                   <div class="col-12">
-                    <input type="text" class="form-control" name="add1" id="" placeholder="Address line 1">
+                    <input type="text" class="form-control" name="add1" id="add1" placeholder="Address line 1">
                   </div>
                 </div>
                 <div class="row mb-3">
                   <div class="col-12">
-                    <input type="text" class="form-control" name="add2" id="" placeholder="Address line 2">
+                  <input type="text" class="form-control" name="add2" id="add2" placeholder="Address line 2">
                   </div>
                 </div>
                 <div class="row mb-3">
                   <div class="col-4">
-                    <input type="text" class="form-control" name="landmark" id="" placeholder="Landmark">
+                  <input type="text" class="form-control" name="landmark" id="landmark" placeholder="Landmark">
                   </div>
                   <div class="col-4">
-                    <input type="text" class="form-control" name="building" id="" placeholder="Building Name/Number">
+                  <input type="text" class="form-control" name="building" id="building" placeholder="Building Name/Number">
                   </div>
                   <div class="col-4">
-                    <input type="text" class="form-control" name="apartment" id="" placeholder="Apartment/Suite Number">
+                  <input type="text" class="form-control" name="apartment" id="apartment" placeholder="Apartment/Suite Number">
                   </div>
                 </div>
                 <div class="row mb-3">
                   <div class="col-6">
-                    <input type="text" class="form-control" name="city" id="" placeholder="City">
+                  <input type="text" class="form-control" name="city" id="city" placeholder="City">
                   </div>
                   <div class="col-6">
-                    <input type="text" class="form-control" name="zip" id="" placeholder="Zip Code">
+                  <input type="text" class="form-control" name="zip" id="zip" placeholder="Zip Code">
                   </div>
                 </div>
                 <hr>
                 <h4>Payment Information</h4>
                 <div class="row mb-3">
                   <div class="col-12">
-                    <input type="text" class="form-control" name="card" id="" placeholder="Card Number (16 digits)">
+                  <input type="text" class="form-control" name="card" id="card" placeholder="Card Number (16 digits)">
                   </div>
                 </div>
                 <div class="row mb-3">
                   <div class="col-6">
-                    <input type="text" class="form-control" name="exp" id="" placeholder="Expiration Date (MM/YY)">
+                  <input type="text" class="form-control" name="exp" id="exp" placeholder="Expiration Date (MM/YY)">
                   </div>
                   <div class="col-6">
-                    <input type="text" class="form-control" name="cvv" id="" placeholder="CVV">
+                  <input type="text" class="form-control" name="cvv" id="cvv" placeholder="CVV">
                   </div>
                 </div>
                 <hr>
                 <h4>Additonal Information</h4>
                 <div class="row mb-3">
                   <div class="col-12">
-                    <div>
-                      <textarea class="form-control" name="" id="" rows="3" placeholder="Notes about your order, e.g. special notes for delivery."></textarea>
-                    </div>
+                  <div>
+                    <textarea class="form-control" name="notes" id="notes" rows="3" placeholder="Notes about your order, e.g. special notes for delivery."></textarea>
+                  </div>
                   </div>
                 </div>
                 <div class="form-check mb-3">
@@ -102,8 +103,8 @@
                     I agree to the <a href="#">terms and conditions</a>
                   </label>
                   </div>
-                <button type="submit" class="btn btn-primary">Place Order</button>
-              </form>
+                <button class="btn btn-primary" onclick="form_submit()">Place Order</button>
+              
             </div>
           </div>
         </div>
@@ -157,5 +158,6 @@
   </footer>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+  <script src="{% static 'js/checkout.js' %}"></script>
 </body>
 </html>

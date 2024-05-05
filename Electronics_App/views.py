@@ -46,6 +46,12 @@ def profile_view(request):
             return render(request, 'profile.html')
     else:
         return redirect('login')
+    
+def checkout_view(request):
+    if request.user.is_authenticated:
+        return render(request, 'checkout.html')
+    else:
+        return redirect('login')
 
 class ProductList(generics.ListCreateAPIView):
     queryset = Product.objects.all()

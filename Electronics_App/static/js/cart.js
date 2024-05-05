@@ -4,6 +4,9 @@ console.log(cartProduct);
 (function getProductsInCart(){
     var product = null;
     for(var i=0 ; i<sessionStorage.length ;i++){
+        if (sessionStorage.key(i).includes('cart-quantity')) {
+            continue;
+          }
         productsInCart.push(JSON.parse(sessionStorage.getItem(sessionStorage.key(i))));
     }
     console.log(productsInCart);
@@ -21,6 +24,7 @@ function displayCartProducts(){
     var totalPrice=0;
     for(var i = 0 ; i<productsInCart.length ; i++ ){
         var img_name = productsInCart[i].picture.split('/').pop();
+        var cart_quantity = sessionStorage.getItem(`cart-quantity-${i}`) == null ? 1 : sessionStorage.getItem(`cart-quantity-${i}`);
         totalPrice+=Number(productsInCart[i].price);
         holder+=`<div  class="container-fluid border-top p-2 placeholder-glow d-flex" style="height: 100px; align-content: center">
         <img src="http://${window.location.host}/static/img/${img_name}" alt="${productsInCart[i].name}" style="width: 80px; height: 80px;">
@@ -35,7 +39,7 @@ function displayCartProducts(){
                 <div class="col">
                     <div class="input-group input-group-sm">
                         <button class="input-group-text" id="minus-addon-${productsInCart[i].id}">-</button>
-                        <span id="quantity-${productsInCart[i].id}" class="border" aria-describedby="minus-addon-0 plus-addon-0" style="width: 30px;text-align: center;">1</span>
+                        <span id="quantity-${productsInCart[i].id}" class="border" aria-describedby="minus-addon-0 plus-addon-0" style="width: 30px;text-align: center;">${cart_quantity}</span>
                         <button class="input-group-text" id="plus-addon-${productsInCart[i].id}">+</button>
                     </div>
                 </div>
@@ -57,7 +61,7 @@ function displayCartProducts(){
             </div>
         </div>
         <div class="row">
-            <a href="../html/checkout.html" class="btn btn-primary">Checkout</a>
+            <a href="http://${window.location.host}/checkout" class="btn btn-primary">Checkout</a>
         </div>
     </div>
 </div>` ;
@@ -67,6 +71,7 @@ attachEvListener();
 function attachEvListener(){
     for(let i=0 ; i<productsInCart.length;i++){
         let span = document.getElementById(`quantity-${productsInCart[i].id}`);
+        span.id = `quantity-${i}`
         let plusButton = document.getElementById(`plus-addon-${productsInCart[i].id}`);
         let minusButton = document.getElementById(`minus-addon-${productsInCart[i].id}`);
         let total = document.getElementById('total-price');
@@ -74,11 +79,13 @@ function attachEvListener(){
             let quant = Number(span.innerHTML);
             if(quant>=2){
             span.innerHTML=(quant-1).toString();
+            sessionStorage.setItem(`cart-quantity-${i}`, `${quant-1}`);
             total.innerHTML=(Number(total.innerHTML)-Number(productsInCart[i].price));
             }
             else if(quant==1){
                 span.innerHTML=(quant-1).toString();
                 sessionStorage.removeItem(productsInCart[i].id);
+                sessionStorage.removeItem(`cart-quantity-${i}`);
                 total.innerHTML=(Number(total.innerHTML)-Number(productsInCart[i].price));
                 window.location.reload();
             }
@@ -88,8 +95,8 @@ function attachEvListener(){
             let quant = Number(span.innerHTML);
             if(quant < productsInCart[i].quantity){
             span.innerHTML=(quant+1).toString();
-             total.innerHTML=(Number(total.innerHTML)+Number(productsInCart[i].price));
-
+                total.innerHTML=(Number(total.innerHTML)+Number(productsInCart[i].price));
+                sessionStorage.setItem(`cart-quantity-${i}`, `${quant+1}`);
             }
         });
     }
