@@ -40,7 +40,13 @@ class UserProfile(generics.RetrieveAPIView):
         return self.request.user
 
 def profile_view(request):
-    return render(request, 'profile.html')
+    if request.user.is_authenticated:
+        if request.user.is_superuser:
+            return render(request, 'seller_profile.html')
+        else:
+            return render(request, 'profile.html')
+    else:
+        return redirect('login')
 
 class ProductList(generics.ListCreateAPIView):
     queryset = Product.objects.all()
