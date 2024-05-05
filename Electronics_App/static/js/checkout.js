@@ -70,10 +70,13 @@ function form_submit() {
     .then(data => {
       console.log('Order created:', data);
       // Handle the response data as needed
+      window.location.pathname = '/profile'
     })
     .catch(error => {
       console.error('Error creating order:', error);
-      // Handle the error as needed
+      // Display a bootstrap alert to the user
+      alert('Error creating order');
+      window.location.pathname = '/';
     });
 
 // Function to get the value of a cookie by name
