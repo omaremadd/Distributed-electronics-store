@@ -84,11 +84,15 @@ class DeleteCategoryView(View):
         else:
             return HttpResponse(f"Failed to delete category, status code: {response.status_code}, response: {response.text}")
 
-class PlaceOrderView(generics.CreateAPIView):
+class PlaceOrderView(generics.ListCreateAPIView):
+    queryset = Order.objects.all()
     serializer_class = PlaceOrderSerializer
 
-class AddProductToOrder(generics.CreateAPIView):
-    serializer_class = AddProductToOrderSerializer
+    def perform_create(self, serializer):
+        serializer.save(customer=self.request.user)
+
+# class AddProductToOrder(generics.CreateAPIView):
+#     serializer_class = AddProductToOrderSerializer
 
 class OrderList(generics.ListCreateAPIView):
     queryset = Order.objects.all()
