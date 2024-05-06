@@ -30,10 +30,10 @@ function displayCartProducts(){
         <img src="http://${window.location.host}/static/img/${img_name}" alt="${productsInCart[i].name}" style="width: 80px; height: 80px;">
         <div class="container-fluid col">
             <div class="row">
-                <strong class="" style="font-size: large;">${productsInCart[i].name}</strong>
+                <strong class="" style="font-size: large;">${shortenText(productsInCart[i].name,22)}</strong>
             </div>
             <div class="row">
-                <span class="">${shortenText(productsInCart[i].description,30)}</span>
+                <span class="">${shortenText(productsInCart[i].description,27)}</span>
             </div>
             <div class="row">
                 <div class="col">
