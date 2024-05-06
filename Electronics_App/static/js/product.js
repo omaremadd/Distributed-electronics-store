@@ -7,6 +7,7 @@ var productPrice = document.getElementById('product_price');
 var addButton = document.getElementById('add_btn');
 var cartButton = document.getElementById('cart_btn');
 var productDescription = document.getElementById('product_description');
+var productCategory = document.getElementById('product_category');
 var img = document.getElementById('product_img');
 var product = null;
 async function getProduct(){
@@ -26,7 +27,8 @@ function displayProduct(){
     productPrice.classList.remove('placeholder');
     addButton.classList.remove('placeholder');
     cartButton.classList.remove('placeholder');
-    product_name_tag.innerHTML=product.name;
+    productCategory.classList.remove('placeholder');
+    product_name_tag.innerText=` / ${product.name}`;
     productDescription.classList.remove('placeholder');
     var stock = product.quantity;
     if(stock != 0){
@@ -40,7 +42,8 @@ function displayProduct(){
         addButton.classList.replace('btn-primary','btn-secondary');
         addButton.classList.add('disabled');
     }
-    productDescription.innerHTML = `<pre style="font-family: Arial, san-serif;">${product.description}</pre>`;
+    productCategory.innerHTML = `<a href="http://${window.location.host}/category/${product.category_id}" class="link-underline link-underline-opacity-0">${product.category_title}</a>`;
+    productDescription.innerHTML = `<span style="font-family: Arial, san-serif; white-space: pre-line;">${product.description}</span>`;
     productPrice.innerHTML = product.price + ' EGP';
     img.src = 'http://' + window.location.host + '/static/img/' + product.picture.split("/").pop();
     img.style = 'height:450px; width:600px; max-width:90vw ; object-fit: contain;';
