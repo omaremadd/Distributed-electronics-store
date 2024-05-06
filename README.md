@@ -20,7 +20,10 @@
 ```
 ---
 ## To run the server:
-Make sure the virtual environment is activated (batch file 2), then run this command
+- Run Xampp (skip these steps if it's already running)
+  - Start Apache server
+  - Start MySQL server
+- Make sure the virtual environment is activated (batch file 2), then run this command
 ```cmd
 python manage.py runserver
 ```

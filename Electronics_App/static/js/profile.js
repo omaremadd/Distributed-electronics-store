@@ -40,7 +40,7 @@ function displayOrders(orders) {
         order_li.appendChild(order_ul);
         let date_li = document.createElement('li');
         let order_date = new Date(orders[i].Order_date);
-        date_li.innerText = `Order Date: ${order_date.getDate()}/${order_date.getMonth()}/${order_date.getFullYear()}`;
+        date_li.innerText = `Order Date: ${order_date.getDate()}/${order_date.getMonth() + 1}/${order_date.getFullYear()}`;
         order_ul.appendChild(date_li);
         let items_li = document.createElement('li');
         items_li.innerText = `Items: ${orders[i].items.length}`;
