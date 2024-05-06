@@ -1,3 +1,11 @@
+var add1 = document.getElementById('add1');
+var add2 = document.getElementById('add2');
+var landmark = document.getElementById('landmark');
+var building = document.getElementById('building');
+var apartment = document.getElementById('apartment');
+var city = document.getElementById('city');
+var zip = document.getElementById('zip');
+var terms_conditions_check = document.getElementById('terms-conditions-check');
 document.addEventListener('DOMContentLoaded', function() {
   form = document.querySelector('form');
   var user = null;
@@ -12,13 +20,6 @@ document.addEventListener('DOMContentLoaded', function() {
     lname.value = user.last_name;
     var phone = document.getElementById('phone');
     phone.value = user.phone;
-    var add1 = document.getElementById('add1');
-    var add2 = document.getElementById('add2');
-    var landmark = document.getElementById('landmark');
-    var building = document.getElementById('building');
-    var apartment = document.getElementById('apartment');
-    var city = document.getElementById('city');
-    var zip = document.getElementById('zip');
   }
   getuser();
   productsInCart = [];
@@ -32,9 +33,46 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     console.log(productsInCart);
   })();
+  let total_price = 0;
+  for (let i = 0; i < productsInCart.length; i++) {
+    let product_tr = document.createElement('tr');
+    product_qty = sessionStorage.getItem(`cart-quantity-${i}`);
+    if (product_qty == null) {
+      product_qty = 1;
+    }
+    product_tr.innerHTML = `
+      <td>${productsInCart[i].name}</td>
+      <td>${product_qty}</td>
+      <td>${productsInCart[i].price * product_qty} EGP</td>
+    `;
+    document.getElementById('cart-summary').appendChild(product_tr);
+    total_price += productsInCart[i].price * product_qty;
+  }
+  let total_price_tr = document.createElement('tr');
+  total_price_tr.innerHTML = `
+    <td colspan="2"><strong>Total</strong></td>
+    <td>${total_price} EGP</td>
+  `;
+  document.getElementById('cart-summary').appendChild(total_price_tr);
 });
 
 function form_submit() {
+  if (add1.value == '') {
+    alert('Address Line 1 is required');
+    return;
+  } else if (building.value == '') {
+    alert('Building is required');
+    return;
+  } else if (city.value == '') {
+    alert('City is required');
+    return;
+  } else if (zip.value == '') {
+    alert('Zip is required');
+    return;
+  } else if (!terms_conditions_check.checked) {
+    alert('Please accept the terms and conditions');
+    return;
+  }
   
   var order = {}
   order.address = 'Address Line 1: ' + add1.value
