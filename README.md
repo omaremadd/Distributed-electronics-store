@@ -6,24 +6,14 @@
    1. Start Apache server
    2. Start MySQL server
       1. Open [this link](http://localhost/phpmyadmin)
-      2. Create a new database called `shop_django`
-3. Open up a Command Prompt (not PowerShell!)
-4. Run the following commands from the repo directory:
-```cmd
-1-make-venv.bat
-```
-```cmd
-2-activate-venv.bat
-```
-```cmd
-3-setup-venv.bat
-```
+      2. Create a new database called `shop_django` and import an existing `shop_django.sql` if available
+3. Execute the `setup.bat` batch file (Internet connection required)
 ---
 ## To run the server:
 - Run Xampp (skip these steps if it's already running)
   - Start Apache server
   - Start MySQL server
-- Make sure the virtual environment is activated (batch file 2), then run this command
-```cmd
-python manage.py runserver
-```
+- Execute `runserver.bat`
+> `runserver.bat` takes an *optional* command line argument (IP:Port).  
+> e.g. 
+> ```runserver.bat 127.0.0.1:8000```
