@@ -1,7 +1,6 @@
 from django.urls import path
 from Electronics_App import views
 from django.contrib.auth import views as auth_views
-# from .views import DeleteCategoryView
 
 urlpatterns = [
     path('', views.home_view, name='home'),
@@ -21,5 +20,4 @@ urlpatterns = [
     path('API/myOrders/', views.UserOrderList.as_view(), name='my_orders'),
     path('API/orders/', views.OrderList.as_view(), name='order_list'),
     path('API/orders/<pk>/', views.OrderDetail.as_view(), name='order_detail'),
-    # path('delete-category/<int:category_id>/', DeleteCategoryView.as_view(), name='delete-category'),
 ]
