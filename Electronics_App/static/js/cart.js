@@ -25,7 +25,7 @@ function displayCartProducts(){
     for(var i = 0 ; i<productsInCart.length ; i++ ){
         var img_name = productsInCart[i].picture.split('/').pop();
         var cart_quantity = sessionStorage.getItem(`cart-quantity-${i}`) == null ? 1 : sessionStorage.getItem(`cart-quantity-${i}`);
-        totalPrice+=Number(productsInCart[i].price);
+        totalPrice+=Number(productsInCart[i].price) * Number(sessionStorage.getItem(`cart-quantity-${i}`));
         holder+=`<div  class="container-fluid border-top p-2 placeholder-glow d-flex" style="height: 100px; align-content: center">
         <img src="http://${window.location.host}/static/img/${img_name}" alt="${productsInCart[i].name}" style="width: 80px; height: 80px;">
         <div class="container-fluid col">

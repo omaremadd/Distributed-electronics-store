@@ -32,6 +32,13 @@
                                   <div class="my-0">
                                     <label for="" class="form-label"><h5>Username:</h5></label>
                                     {% render_field form.username placeholder="username" class="form-control" id="username" %}
+                                    {% if form.username.errors %}
+                                      {% for error in form.username.errors %}
+                                        <div class="alert alert-danger form-alert my-2" role="alert">
+                                          {{ error }}
+                                        </div>
+                                      {% endfor %}
+                                    {% endif %}
                                 </div>
                                 </div>
                                 <div class="row">
