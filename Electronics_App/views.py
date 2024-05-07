@@ -5,9 +5,9 @@ from MySQLdb import IntegrityError
 from .models import Product, Order, Customer, Category
 from .serializers import *
 from .forms import SignUpForm
-from django.http import HttpResponse
-from django.views import View
-import requests
+# from django.http import HttpResponse
+# from django.views import View
+# import requests
 # Create your views here.
 
 def home_view (request):
@@ -53,11 +53,11 @@ def checkout_view(request):
     else:
         return redirect('login')
 
-class ProductList(generics.ListCreateAPIView):
+class ProductList(generics.ListAPIView):
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
 
-class ProductDetail(generics.RetrieveUpdateDestroyAPIView):
+class ProductDetail(generics.RetrieveAPIView):
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
     lookup_field = 'pk'
@@ -70,24 +70,15 @@ def category_view(request, pk):
     category = Category.objects.get(pk=pk)
     return render(request, 'category.html', {'category': category})
 
-class CategoryList(generics.ListCreateAPIView):
+class CategoryList(generics.ListAPIView):
     queryset = Category.objects.all()
     serializer_class = CategoryListSerializer
 
-class CategoryDetail(generics.RetrieveUpdateDestroyAPIView):
+class CategoryDetail(generics.RetrieveAPIView):
     serializer_class = CategorySerializer
     lookup_field = 'pk'
     def get_queryset(self):
         return Category.objects.all().prefetch_related('products')
-
-class DeleteCategoryView(View):
-    def get(self, request, *args, **kwargs):
-        category_id = kwargs['category_id']
-        response = requests.delete(f'http://127.0.0.1:8000/API/categories/{category_id}/')
-        if response.status_code == 204:
-            return HttpResponse("Category deleted successfully")
-        else:
-            return HttpResponse(f"Failed to delete category, status code: {response.status_code}, response: {response.text}")
 
 class PlaceOrderView(generics.ListCreateAPIView):
     queryset = Order.objects.all()
@@ -96,29 +87,26 @@ class PlaceOrderView(generics.ListCreateAPIView):
     def perform_create(self, serializer):
         serializer.save(customer=self.request.user)
 
-# class AddProductToOrder(generics.CreateAPIView):
-#     serializer_class = AddProductToOrderSerializer
-
-class UserOrderList(generics.ListCreateAPIView):
+class UserOrderList(generics.ListAPIView):
     serializer_class = OrderSerializer
 
     def get_queryset(self):
         return Order.objects.filter(customer=self.request.user)
 
-class OrderList(generics.ListCreateAPIView):
+class OrderList(generics.ListAPIView):
     queryset = Order.objects.all()
     serializer_class = OrderSerializer
 
-class OrderDetail(generics.RetrieveUpdateDestroyAPIView):
+class OrderDetail(generics.RetrieveAPIView):
     queryset = Order.objects.all()
     serializer_class = OrderSerializer
     lookup_field = 'pk'
 
-# class PaymentList(generics.ListCreateAPIView):
-#     queryset = Payment.objects.all()
-#     serializer_class = PaymentSerializer
-
-# class PaymentDetail(generics.RetrieveUpdateDestroyAPIView):
-#     queryset = Payment.objects.all()
-#     serializer_class = PaymentSerializer
-#     lookup_field = 'pk'
+# class DeleteCategoryView(View):
+#     def get(self, request, *args, **kwargs):
+#         category_id = kwargs['category_id']
+#         response = requests.delete(f'http://127.0.0.1:8000/API/categories/{category_id}/')
+#         if response.status_code == 204:
+#             return HttpResponse("Category deleted successfully")
+#         else:
+#             return HttpResponse(f"Failed to delete category, status code: {response.status_code}, response: {response.text}")

@@ -1,7 +1,7 @@
 from django.urls import path
 from Electronics_App import views
 from django.contrib.auth import views as auth_views
-from .views import DeleteCategoryView
+# from .views import DeleteCategoryView
 
 urlpatterns = [
     path('', views.home_view, name='home'),
@@ -18,11 +18,8 @@ urlpatterns = [
     path('API/products/', views.ProductList.as_view(), name='product_list'),
     path('API/products/<pk>/', views.ProductDetail.as_view(), name='product_detail'),
     path('API/placeOrder/', views.PlaceOrderView.as_view(), name='place_order'),
-    # path('API/orderProduct/', views.AddProductToOrder.as_view(), name='order_item_create'),
     path('API/myOrders/', views.UserOrderList.as_view(), name='my_orders'),
     path('API/orders/', views.OrderList.as_view(), name='order_list'),
     path('API/orders/<pk>/', views.OrderDetail.as_view(), name='order_detail'),
-    # path('API/payments/', views.PaymentList.as_view(), name='payment_list'),
-    # path('API/payments/<pk>/', views.PaymentDetail.as_view(), name='payment_detail'),
-    path('delete-category/<int:category_id>/', DeleteCategoryView.as_view(), name='delete-category'),
+    # path('delete-category/<int:category_id>/', DeleteCategoryView.as_view(), name='delete-category'),
 ]

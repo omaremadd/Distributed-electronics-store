@@ -98,25 +98,6 @@ class PlaceOrderSerializer(serializers.ModelSerializer):
     def get_total_price(self, obj):
         return obj.total_price
 
-# class AddProductToOrderSerializer(serializers.Serializer):
-#     order = serializers.SlugRelatedField(slug_field='id', queryset=Order.objects.all())
-#     product = serializers.SlugRelatedField(slug_field='name', queryset=Product.objects.all())
-#     quantity = serializers.IntegerField(default=1)
-
-#     def create(self, validated_data):
-#         order = validated_data.get('order')
-#         product = validated_data.get('product')
-#         quantity = validated_data.get('quantity')
-
-#         order_item = OrderItem.objects.create(
-#             order=order,
-#             product=product,
-#             price=product.price,
-#             quantity=quantity
-#         )
-
-#         return order_item
-
 class OrderItemSerializer(serializers.ModelSerializer):
     product = ProductSerializer()
     class Meta:
@@ -128,35 +109,3 @@ class OrderSerializer(serializers.ModelSerializer):
     class Meta:
         model = Order
         fields = ['id', 'customer', 'Delivery_date', 'Order_date', 'items', 'address', 'Complain']
-    # def get_products(self, obj):
-    #     contains = OrderItem.objects.filter(Order=obj)
-    #     products = [c.Product for c in contains]
-    #     return ProductSerializer(products, many=True).data
-
-# class PaymentSerializer(serializers.ModelSerializer):
-#     amount = serializers.SerializerMethodField()
-
-#     class Meta:
-#         model = Payment
-#         fields = ['id', 'order', 'method', 'amount']  # Include 'amount' as a read-only field
-
-#     def get_amount(self, obj):
-#         # Calculate the total amount of the order
-#         total_amount = 0
-#         for item in OrderItem.objects.filter(order=obj.order):
-#             total_amount += item.price * item.quantity
-
-#         return total_amount
-
-#     def create(self, validated_data):
-#         order = validated_data.get('order')
-
-#         # Calculate the total amount of the order
-#         total_amount = 0
-#         for item in OrderItem.objects.filter(order=order):
-#             total_amount += item.price * item.quantity
-
-#         # Set the amount of the payment to the total amount of the order
-#         validated_data['amount'] = total_amount
-
-#         return super().create(validated_data)
