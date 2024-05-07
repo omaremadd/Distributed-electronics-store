@@ -25,10 +25,10 @@ function displayProducts(){
               <h4 class="card-title">${category.products[i].name}</h4>
               <p class="card-text">
                 <!-- <span class="placeholder col-7"></span> -->
-                <span class="">${category.products[i].quantity} left in stock</span><br>
+                ${stock_message(category.products[i].quantity)}<br>
                 <span class="">${category.products[i].price} EGP</span>
               </p>
-              <button class="btn btn-primary col-5 ${cart_disabled(category.products[i].quantity)}" style="width:120px;">${cart_text(category.products[i].quantity)}</button>
+              <button class="btn btn-primary col-5" style="width:120px;">View Details</button>
             </div>
           </div>
         </a>
@@ -37,16 +37,24 @@ function displayProducts(){
     productHolder.innerHTML=productCard;
 }
 
-function cart_disabled(stock) {
+function stock_message(stock) {
   if (stock == 0) {
-      return "disabled";
+      return `<span class="text-danger">Out of stock</span>`;
   }
-  return "";
+  return stock + " left in stock";
+
 }
 
-function cart_text(stock) {
-  if (stock == 0) {
-      return "Out of Stock";
-  }
-  return "Add to Cart";
-}
+// function cart_disabled(stock) {
+//   if (stock == 0) {
+//       return "disabled";
+//   }
+//   return "";
+// }
+
+// function cart_text(stock) {
+//   if (stock == 0) {
+//       return "Out of Stock";
+//   }
+//   return "Add to Cart";
+// }
