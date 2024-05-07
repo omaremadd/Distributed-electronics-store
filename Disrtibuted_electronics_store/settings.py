@@ -21,7 +21,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-f9ss419kr)@&p^&5q&$*3gbxv-b8_yu7qrnsj=a!5o**+z^wf2'
+with open("./SECRET_KEY") as f:
+    SECRET_KEY = f.read().strip()
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
@@ -76,13 +77,15 @@ WSGI_APPLICATION = 'Disrtibuted_electronics_store.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
+with open("./DB_PASSWORD") as f:
+    DB_PASSWORD = f.read().strip()
 
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'shop_django',
         'USER': 'root',
-        'PASSWORD': '',
+        'PASSWORD': DB_PASSWORD,
         'HOST': '127.0.0.1',
         'PORT': '3306',
         'OPTIONS' : {
