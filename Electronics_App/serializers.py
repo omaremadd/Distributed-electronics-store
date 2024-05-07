@@ -64,6 +64,13 @@ class PlaceOrderSerializer(serializers.ModelSerializer):
         # Set the delivery date to the current date plus 3 days
         delivery_date = datetime.now().date() + timedelta(days=3)
 
+        # Check if the requested quantity is available for all items
+        for item in items:
+            product = Product.objects.get(pk=item.get('product').pk)
+            quantity = item.get('quantity')
+            if product.quantity < quantity:
+                raise serializers.ValidationError(f'Not enough quantity for product {product.pk}')
+
         order = Order.objects.create(
             customer=customer, 
             Delivery_date=delivery_date, 
@@ -75,9 +82,6 @@ class PlaceOrderSerializer(serializers.ModelSerializer):
         for item in items:
             product = Product.objects.get(pk=item.get('product').pk)
             quantity = item.get('quantity')
-            # Check if the requested quantity is available
-            if product.quantity < quantity:
-                raise serializers.ValidationError(f'Not enough quantity for product {product.pk}')
             total_price += product.price * quantity
 
             OrderItem.objects.create(
