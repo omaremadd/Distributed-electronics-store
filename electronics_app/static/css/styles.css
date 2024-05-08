@@ -1,0 +1,22 @@
+.float-on-hover, .float-on-hover-card {
+  transition: margin 0.2s ease-in-out;
+}
+
+.float-on-hover:hover, .float-on-hover-card:hover {
+  margin-top: -5px;
+}
+
+.float-on-hover-card {
+  margin-bottom: 25px;
+}
+
+.float-on-hover-card:hover {
+  margin-top: -5px;
+  margin-bottom: 30px;
+}
+
+.form-alert {
+  font-size: small;
+}
+
+/*# sourceMappingURL=styles.css.map */
